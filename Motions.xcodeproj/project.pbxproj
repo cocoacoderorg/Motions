@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E6128F661351792C0049E23A /* SimpleAcceleration.m in Sources */ = {isa = PBXBuildFile; fileRef = E6128F651351792C0049E23A /* SimpleAcceleration.m */; };
+		E63A6A861343DFD2005E88B7 /* MotionsRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E63A6A841343DFD2005E88B7 /* MotionsRootViewController.xib */; };
+		E66EC473134D758C0083D707 /* SR-71-Color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E66EC471134D758C0083D707 /* SR-71-Color@2x.png */; };
+		E66EC476134D75C10083D707 /* SR-71-Color.png in Resources */ = {isa = PBXBuildFile; fileRef = E66EC475134D75C10083D707 /* SR-71-Color.png */; };
+		E66EC488134D827D0083D707 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66EC487134D827D0083D707 /* QuartzCore.framework */; };
+		E6B7BE25134D975600D84F88 /* dark_light_cog_alt_24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B7BE24134D975600D84F88 /* dark_light_cog_alt_24x24.png */; };
+		E6CA98171343C86300CCADF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CA98161343C86300CCADF9 /* UIKit.framework */; };
+		E6CA98191343C86300CCADF9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CA98181343C86300CCADF9 /* Foundation.framework */; };
+		E6CA981B1343C86300CCADF9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CA981A1343C86300CCADF9 /* CoreGraphics.framework */; };
+		E6CA98211343C86300CCADF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6CA981F1343C86300CCADF9 /* InfoPlist.strings */; };
+		E6CA98241343C86300CCADF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CA98231343C86300CCADF9 /* main.m */; };
+		E6CA98271343C86300CCADF9 /* MotionsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CA98261343C86300CCADF9 /* MotionsAppDelegate.m */; };
+		E6CA982A1343C86300CCADF9 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6CA98281343C86300CCADF9 /* MainWindow.xib */; };
+		E6CA982D1343C86300CCADF9 /* MotionsRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CA982C1343C86300CCADF9 /* MotionsRootViewController.m */; };
+		E6CA98391343C9F700CCADF9 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6CA98371343C9F700CCADF9 /* MainWindow-iPad.xib */; };
+		E6CA983B1343CA1C00CCADF9 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CA983A1343CA1C00CCADF9 /* CoreMotion.framework */; };
+		E6CA984E1343CC9100CCADF9 /* Aurora.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CA984A1343CC9100CCADF9 /* Aurora.png */; };
+		E6CA984F1343CC9100CCADF9 /* Aurora@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CA984B1343CC9100CCADF9 /* Aurora@2x.png */; };
+		E6CA98501343CC9100CCADF9 /* iPhone4.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CA984C1343CC9100CCADF9 /* iPhone4.png */; };
+		E6CA98511343CC9100CCADF9 /* iPhone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6CA984D1343CC9100CCADF9 /* iPhone4@2x.png */; };
+		E6E7C2EC1344244700C6AF46 /* MotionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E7C2E81344244700C6AF46 /* MotionsTableViewCell.xib */; };
+		E6E7C2ED1344244700C6AF46 /* MotionsWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E7C2EA1344244700C6AF46 /* MotionsWebView.xib */; };
+		E6E7C2F11344248300C6AF46 /* MotionsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E7C2F01344248300C6AF46 /* MotionsWebViewController.m */; };
+		E6E7C3061344294500C6AF46 /* Mercury_Messenger.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E7C3041344294500C6AF46 /* Mercury_Messenger.png */; };
+		E6E7C3071344294500C6AF46 /* Mercury_Messenger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6E7C3051344294500C6AF46 /* Mercury_Messenger@2x.png */; };
+		E6E7C30A1345142700C6AF46 /* Spacecraft.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E7C3091345142700C6AF46 /* Spacecraft.m */; };
+		E6E7C32E13452D2200C6AF46 /* SimpleDeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = E6E7C32C13452D2200C6AF46 /* SimpleDeviceMotion.m */; };
+		E6E7C32F13452D2200C6AF46 /* SimpleDeviceMotion.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E7C32D13452D2200C6AF46 /* SimpleDeviceMotion.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E6128F641351792C0049E23A /* SimpleAcceleration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAcceleration.h; sourceTree = "<group>"; };
+		E6128F651351792C0049E23A /* SimpleAcceleration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAcceleration.m; sourceTree = "<group>"; };
+		E63A6A851343DFD2005E88B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MotionsRootViewController.xib; sourceTree = "<group>"; };
+		E66EC471134D758C0083D707 /* SR-71-Color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color@2x.png"; sourceTree = "<group>"; };
+		E66EC475134D75C10083D707 /* SR-71-Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color.png"; sourceTree = "<group>"; };
+		E66EC487134D827D0083D707 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E6B7BE24134D975600D84F88 /* dark_light_cog_alt_24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dark_light_cog_alt_24x24.png; sourceTree = "<group>"; };
+		E6CA98121343C86300CCADF9 /* Motions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motions.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6CA98161343C86300CCADF9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E6CA98181343C86300CCADF9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E6CA981A1343C86300CCADF9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E6CA981E1343C86300CCADF9 /* Motions-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Motions-Info.plist"; sourceTree = "<group>"; };
+		E6CA98201343C86300CCADF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E6CA98221343C86300CCADF9 /* Motions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Motions-Prefix.pch"; sourceTree = "<group>"; };
+		E6CA98231343C86300CCADF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E6CA98251343C86300CCADF9 /* MotionsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotionsAppDelegate.h; sourceTree = "<group>"; };
+		E6CA98261343C86300CCADF9 /* MotionsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotionsAppDelegate.m; sourceTree = "<group>"; };
+		E6CA98291343C86300CCADF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		E6CA982B1343C86300CCADF9 /* MotionsRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotionsRootViewController.h; sourceTree = "<group>"; };
+		E6CA982C1343C86300CCADF9 /* MotionsRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotionsRootViewController.m; sourceTree = "<group>"; };
+		E6CA98381343C9F700CCADF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		E6CA983A1343CA1C00CCADF9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		E6CA984A1343CC9100CCADF9 /* Aurora.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aurora.png; sourceTree = "<group>"; };
+		E6CA984B1343CC9100CCADF9 /* Aurora@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Aurora@2x.png"; sourceTree = "<group>"; };
+		E6CA984C1343CC9100CCADF9 /* iPhone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone4.png; sourceTree = "<group>"; };
+		E6CA984D1343CC9100CCADF9 /* iPhone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone4@2x.png"; sourceTree = "<group>"; };
+		E6E7C2E91344244700C6AF46 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MotionsTableViewCell.xib; sourceTree = "<group>"; };
+		E6E7C2EB1344244700C6AF46 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MotionsWebView.xib; sourceTree = "<group>"; };
+		E6E7C2EF1344248300C6AF46 /* MotionsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionsWebViewController.h; sourceTree = "<group>"; };
+		E6E7C2F01344248300C6AF46 /* MotionsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionsWebViewController.m; sourceTree = "<group>"; };
+		E6E7C3041344294500C6AF46 /* Mercury_Messenger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mercury_Messenger.png; sourceTree = "<group>"; };
+		E6E7C3051344294500C6AF46 /* Mercury_Messenger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Mercury_Messenger@2x.png"; sourceTree = "<group>"; };
+		E6E7C3081345142700C6AF46 /* Spacecraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spacecraft.h; sourceTree = "<group>"; };
+		E6E7C3091345142700C6AF46 /* Spacecraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spacecraft.m; sourceTree = "<group>"; };
+		E6E7C32B13452D2200C6AF46 /* SimpleDeviceMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDeviceMotion.h; sourceTree = "<group>"; };
+		E6E7C32C13452D2200C6AF46 /* SimpleDeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDeviceMotion.m; sourceTree = "<group>"; };
+		E6E7C32D13452D2200C6AF46 /* SimpleDeviceMotion.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleDeviceMotion.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E6CA980F1343C86300CCADF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E66EC488134D827D0083D707 /* QuartzCore.framework in Frameworks */,
+				E6CA983B1343CA1C00CCADF9 /* CoreMotion.framework in Frameworks */,
+				E6CA98171343C86300CCADF9 /* UIKit.framework in Frameworks */,
+				E6CA98191343C86300CCADF9 /* Foundation.framework in Frameworks */,
+				E6CA981B1343C86300CCADF9 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E6CA98071343C86300CCADF9 = {
+			isa = PBXGroup;
+			children = (
+				E6CA981C1343C86300CCADF9 /* Motions */,
+				E6CA98151343C86300CCADF9 /* Frameworks */,
+				E6CA98131343C86300CCADF9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E6CA98131343C86300CCADF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E6CA98121343C86300CCADF9 /* Motions.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E6CA98151343C86300CCADF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E6CA98181343C86300CCADF9 /* Foundation.framework */,
+				E6CA98161343C86300CCADF9 /* UIKit.framework */,
+				E66EC487134D827D0083D707 /* QuartzCore.framework */,
+				E6CA981A1343C86300CCADF9 /* CoreGraphics.framework */,
+				E6CA983A1343CA1C00CCADF9 /* CoreMotion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6CA981C1343C86300CCADF9 /* Motions */ = {
+			isa = PBXGroup;
+			children = (
+				E6CA98361343C9F600CCADF9 /* iPad */,
+				E6CA98251343C86300CCADF9 /* MotionsAppDelegate.h */,
+				E6CA98261343C86300CCADF9 /* MotionsAppDelegate.m */,
+				E6CA982B1343C86300CCADF9 /* MotionsRootViewController.h */,
+				E6CA982C1343C86300CCADF9 /* MotionsRootViewController.m */,
+				E6128F641351792C0049E23A /* SimpleAcceleration.h */,
+				E6128F651351792C0049E23A /* SimpleAcceleration.m */,
+				E6E7C32B13452D2200C6AF46 /* SimpleDeviceMotion.h */,
+				E6E7C32C13452D2200C6AF46 /* SimpleDeviceMotion.m */,
+				E6E7C3081345142700C6AF46 /* Spacecraft.h */,
+				E6E7C3091345142700C6AF46 /* Spacecraft.m */,
+				E6E7C2EF1344248300C6AF46 /* MotionsWebViewController.h */,
+				E6E7C2F01344248300C6AF46 /* MotionsWebViewController.m */,
+				E6CA983C1343CAB500CCADF9 /* Xibs */,
+				E6CA98521343CC9700CCADF9 /* Graphics */,
+				E6CA981D1343C86300CCADF9 /* Supporting Files */,
+			);
+			path = Motions;
+			sourceTree = "<group>";
+		};
+		E6CA981D1343C86300CCADF9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E6CA981E1343C86300CCADF9 /* Motions-Info.plist */,
+				E6CA981F1343C86300CCADF9 /* InfoPlist.strings */,
+				E6CA98221343C86300CCADF9 /* Motions-Prefix.pch */,
+				E6CA98231343C86300CCADF9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6CA98361343C9F600CCADF9 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				E6CA98371343C9F700CCADF9 /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		E6CA983C1343CAB500CCADF9 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				E6CA98281343C86300CCADF9 /* MainWindow.xib */,
+				E63A6A841343DFD2005E88B7 /* MotionsRootViewController.xib */,
+				E6E7C2E81344244700C6AF46 /* MotionsTableViewCell.xib */,
+				E6E7C32D13452D2200C6AF46 /* SimpleDeviceMotion.xib */,
+				E6E7C2EA1344244700C6AF46 /* MotionsWebView.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		E6CA98521343CC9700CCADF9 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				E6B7BE24134D975600D84F88 /* dark_light_cog_alt_24x24.png */,
+				E6E7C3041344294500C6AF46 /* Mercury_Messenger.png */,
+				E66EC475134D75C10083D707 /* SR-71-Color.png */,
+				E66EC471134D758C0083D707 /* SR-71-Color@2x.png */,
+				E6E7C3051344294500C6AF46 /* Mercury_Messenger@2x.png */,
+				E6CA984A1343CC9100CCADF9 /* Aurora.png */,
+				E6CA984B1343CC9100CCADF9 /* Aurora@2x.png */,
+				E6CA984C1343CC9100CCADF9 /* iPhone4.png */,
+				E6CA984D1343CC9100CCADF9 /* iPhone4@2x.png */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E6CA98111343C86300CCADF9 /* Motions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6CA98331343C86300CCADF9 /* Build configuration list for PBXNativeTarget "Motions" */;
+			buildPhases = (
+				E6CA980E1343C86300CCADF9 /* Sources */,
+				E6CA980F1343C86300CCADF9 /* Frameworks */,
+				E6CA98101343C86300CCADF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Motions;
+			productName = Motions;
+			productReference = E6CA98121343C86300CCADF9 /* Motions.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6CA98091343C86300CCADF9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = PortableFrontier;
+			};
+			buildConfigurationList = E6CA980C1343C86300CCADF9 /* Build configuration list for PBXProject "Motions" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E6CA98071343C86300CCADF9;
+			productRefGroup = E6CA98131343C86300CCADF9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E6CA98111343C86300CCADF9 /* Motions */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E6CA98101343C86300CCADF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6CA98211343C86300CCADF9 /* InfoPlist.strings in Resources */,
+				E6CA982A1343C86300CCADF9 /* MainWindow.xib in Resources */,
+				E6CA98391343C9F700CCADF9 /* MainWindow-iPad.xib in Resources */,
+				E6CA984E1343CC9100CCADF9 /* Aurora.png in Resources */,
+				E6CA984F1343CC9100CCADF9 /* Aurora@2x.png in Resources */,
+				E6CA98501343CC9100CCADF9 /* iPhone4.png in Resources */,
+				E6CA98511343CC9100CCADF9 /* iPhone4@2x.png in Resources */,
+				E63A6A861343DFD2005E88B7 /* MotionsRootViewController.xib in Resources */,
+				E6E7C2EC1344244700C6AF46 /* MotionsTableViewCell.xib in Resources */,
+				E6E7C2ED1344244700C6AF46 /* MotionsWebView.xib in Resources */,
+				E6E7C3061344294500C6AF46 /* Mercury_Messenger.png in Resources */,
+				E6E7C3071344294500C6AF46 /* Mercury_Messenger@2x.png in Resources */,
+				E6E7C32F13452D2200C6AF46 /* SimpleDeviceMotion.xib in Resources */,
+				E66EC473134D758C0083D707 /* SR-71-Color@2x.png in Resources */,
+				E66EC476134D75C10083D707 /* SR-71-Color.png in Resources */,
+				E6B7BE25134D975600D84F88 /* dark_light_cog_alt_24x24.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E6CA980E1343C86300CCADF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6CA98241343C86300CCADF9 /* main.m in Sources */,
+				E6CA98271343C86300CCADF9 /* MotionsAppDelegate.m in Sources */,
+				E6CA982D1343C86300CCADF9 /* MotionsRootViewController.m in Sources */,
+				E6E7C2F11344248300C6AF46 /* MotionsWebViewController.m in Sources */,
+				E6E7C30A1345142700C6AF46 /* Spacecraft.m in Sources */,
+				E6E7C32E13452D2200C6AF46 /* SimpleDeviceMotion.m in Sources */,
+				E6128F661351792C0049E23A /* SimpleAcceleration.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E63A6A841343DFD2005E88B7 /* MotionsRootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E63A6A851343DFD2005E88B7 /* en */,
+			);
+			name = MotionsRootViewController.xib;
+			sourceTree = "<group>";
+		};
+		E6CA981F1343C86300CCADF9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6CA98201343C86300CCADF9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E6CA98281343C86300CCADF9 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6CA98291343C86300CCADF9 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		E6CA98371343C9F700CCADF9 /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6CA98381343C9F700CCADF9 /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
+		E6E7C2E81344244700C6AF46 /* MotionsTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6E7C2E91344244700C6AF46 /* en */,
+			);
+			name = MotionsTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		E6E7C2EA1344244700C6AF46 /* MotionsWebView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6E7C2EB1344244700C6AF46 /* en */,
+			);
+			name = MotionsWebView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E6CA98311343C86300CCADF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E6CA98321343C86300CCADF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		E6CA98341343C86300CCADF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Motions/Motions-Prefix.pch";
+				INFOPLIST_FILE = "Motions/Motions-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E6CA98351343C86300CCADF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Motions/Motions-Prefix.pch";
+				INFOPLIST_FILE = "Motions/Motions-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E6CA980C1343C86300CCADF9 /* Build configuration list for PBXProject "Motions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6CA98311343C86300CCADF9 /* Debug */,
+				E6CA98321343C86300CCADF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6CA98331343C86300CCADF9 /* Build configuration list for PBXNativeTarget "Motions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6CA98341343C86300CCADF9 /* Debug */,
+				E6CA98351343C86300CCADF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E6CA98091343C86300CCADF9 /* Project object */;
+}
