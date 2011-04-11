@@ -447,6 +447,10 @@
 - (IBAction)setDefaultAttitude
 {
     self.defaultAttitude                            = self.motionManager.deviceMotion.attitude;
+    
+    //
+    // Since we're using the craft's view's frame, this will recenter the view.
+    //
     self.craftView.center                           = CGPointMake(160.0, 230.0);
 
     //
