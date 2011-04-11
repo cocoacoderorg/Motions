@@ -55,6 +55,10 @@
     {
         self.spacecraftImage                = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SR-71-Color" ofType:@"png"]];
         
+        self.x                              = [NSNumber numberWithFloat:0.0];
+        self.y                              = [NSNumber numberWithFloat:0.0];
+        self.z                              = [NSNumber numberWithFloat:0.0];
+        
         self.pitch                          = 0.0;
         self.roll                           = 0.0;
         self.yaw                            = 0.0;

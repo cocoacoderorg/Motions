@@ -15,29 +15,29 @@
 {
     UIImage             *spacecraftImage;
     
-    NSDecimalNumber     *x;
-    NSDecimalNumber     *y;
-    NSDecimalNumber     *z;
+    NSNumber            *x;
+    NSNumber            *y;
+    NSNumber            *z;
     
     CGFloat             pitch;
     CGFloat             roll;
     CGFloat             yaw;
     
-    CGFloat         lateralAcceration;
-    CGFloat         longitudinalAcceleration;
+    CGFloat             lateralAcceration;
+    CGFloat             longitudinalAcceleration;
 }
 
 @property (nonatomic, retain)       UIImage             *spacecraftImage;
 
-@property (nonatomic, retain)       NSDecimalNumber     *x;
-@property (nonatomic, retain)       NSDecimalNumber     *y;
-@property (nonatomic, retain)       NSDecimalNumber     *z;
+@property (nonatomic, retain)       NSNumber            *x;
+@property (nonatomic, retain)       NSNumber            *y;
+@property (nonatomic, retain)       NSNumber            *z;
 
 @property                           CGFloat             pitch;
 @property                           CGFloat             roll;
 @property                           CGFloat             yaw;
 
-@property                           CGFloat         lateralAcceleration;
-@property                           CGFloat         longitudinalAcceleration;
+@property                           CGFloat             lateralAcceleration;
+@property                           CGFloat             longitudinalAcceleration;
 
 @end

@@ -427,6 +427,9 @@
     }    
     
     self.craftView.frame                            = craftViewFrame;
+    self.spacecraft.x                               = [NSNumber numberWithFloat:self.craftView.center.x];
+    self.spacecraft.y                               = [NSNumber numberWithFloat:self.craftView.center.y];
+    self.spacecraft.z                               = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
 }
 
 
