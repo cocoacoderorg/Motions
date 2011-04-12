@@ -23,6 +23,7 @@
 - (void)craftAttitude;
 - (void)craftAcceleration;
 - (void)diplayCraftAttitudeData;
+- (void)craftTranslation;
 
 @end
 
@@ -30,6 +31,8 @@
 @implementation SimpleAcceleration
 
 
+
+@synthesize userAccel;
 
 @synthesize deviceAttitude;
 @synthesize defaultAttitude;
@@ -39,6 +42,7 @@
 @synthesize animating;
 @synthesize animationFrameInterval;
 
+@synthesize craftView;
 @synthesize craftImageView;
 
 @synthesize pitchTextField;
@@ -64,6 +68,7 @@
     
     [displayLink release];
     
+    [craftView release];
     [craftImageView release];
     
     [pitchTextField release];
@@ -108,7 +113,7 @@
 
 - (CMMotionManager *)motionManager
 {
-    CMMotionManager *aMotionManager                 = nil;
+//    CMMotionManager *aMotionManager                 = nil;
     
     id appDelegate                                  = [UIApplication sharedApplication].delegate;
     if ([appDelegate respondsToSelector:@selector(motionManager)])
@@ -126,11 +131,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.userAccel                                  = YES;
+    
     // Do any additional setup after loading the view from its nib.
     self.spacecraft                                 = [[Spacecraft alloc] init];
     
-    self.motionManager.deviceMotionUpdateInterval   = 1.0 / 50.0; // 50 Hz
-    self.motionManager.accelerometerUpdateInterval  = 1.0 / 50.0;
+    self.motionManager.deviceMotionUpdateInterval   = 1.0 / 40.0; // 40 Hz
+    self.motionManager.accelerometerUpdateInterval  = 1.0 / 40.0;
     
     animating                                       = FALSE;
     animationFrameInterval                          = 1;
@@ -172,8 +180,10 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.craftView                                  = nil;
     self.craftImageView                             = nil;
     self.pitchTextField                             = nil;
     self.rollTextField                              = nil;
@@ -290,10 +300,9 @@
     transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
     transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], -1.0, 0.0, 0.0);
     transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
-    //    transformedView                                 = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
-    transformedView                                 = CATransform3DTranslate(transformedView, translationX, translationY, 0.0);
-    self.craftImageView.layer.transform             = transformedView;
-    self.craftImageView.layer.zPosition             = 100.0;
+    transformedView                                 = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
+    self.craftView.layer.sublayerTransform          = transformedView;
+    self.craftView.layer.zPosition                  = 100.0;
 }
 
 
@@ -376,56 +385,79 @@
 
 
 
-#define MOTION_SCALE  10.0;
+#define MOTION_SCALE  1.0;
+
+- (void)craftTranslation
+{
+    CGRect mainViewFrame                            = self.view.frame;
+    CGRect craftViewFrame                           = self.craftView.frame;
+    
+    
+    //
+    // Acceleration for left-right, front-back movement
+    //
+    if (userAccel) 
+    {
+        self.spacecraft.lateralAcceleration         = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.x];
+        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.y];
+    }
+    else
+    {
+        self.spacecraft.lateralAcceleration         = [NSNumber numberWithFloat:self.motionManager.accelerometerData.acceleration.x];
+        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithFloat:self.motionManager.accelerometerData.acceleration.y];
+    }
+
+    //
+    // X-Translation
+    //
+    craftViewFrame.origin.x                         += [self.spacecraft.lateralAcceleration floatValue] * MOTION_SCALE;
+    if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
+    {
+        craftViewFrame.origin.x                     = self.craftView.frame.origin.x;
+    }
+    
+    //
+    // Y-Translation
+    //
+    craftViewFrame.origin.y                         += [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_SCALE;
+    if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
+    {
+        craftViewFrame.origin.y                     = self.craftView.frame.origin.y;
+    }    
+    
+    self.craftView.frame                            = craftViewFrame;
+    self.spacecraft.x                               = [NSNumber numberWithFloat:self.craftView.center.x];
+    self.spacecraft.y                               = [NSNumber numberWithFloat:self.craftView.center.y];
+    self.spacecraft.z                               = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
+}
+
+
+
 
 - (void)drawView
 {
     [self craftAttitude];
     
-    //
-    // Acceleration for left-right, front-back movement
-    //
-    self.spacecraft.lateralAcceleration             = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.x];
-    self.spacecraft.longitudinalAcceleration        = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.y];
-    
-    //    self.spacecraft.lateralAcceleration             = (CGFloat)self.motionManager.accelerometerData.acceleration.x;
-    //    self.spacecraft.longitudinalAcceleration        = (CGFloat)self.motionManager.accelerometerData.acceleration.y;
-    
-    CGRect craftViewFrame                           = self.craftImageView.frame;
-    
-    if (CGRectContainsRect(self.view.bounds, craftViewFrame)) 
-    {
-        NSLog(@"Yup, craft view in main view\n\n");
-    }
-    
-    craftViewFrame.origin.x                         += [self.spacecraft.lateralAcceleration floatValue] * MOTION_SCALE;
-    translationX                                    += [self.spacecraft.lateralAcceleration floatValue] * MOTION_SCALE;
-    NSLog(@"craftViewFrame.origin.x = %f\n\n", craftViewFrame.origin.x);
-    
-    if (!CGRectContainsRect(self.view.bounds, craftViewFrame)) 
-    {
-        translationX                                = craftViewFrame.origin.x - self.craftImageView.frame.origin.x;
-        
-        NSLog(@"craftViewFrame.origin.x       = %f", craftViewFrame.origin.x);
-        NSLog(@"craftImageView.frame.origin.x = %f\n\n", self.craftImageView.frame.origin.x);
-        
-        //        craftViewFrame.origin.x                     = self.craftImageView.frame.origin.x;
-    }
-    
-    craftViewFrame.origin.y                         -= [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_SCALE;
-    if (!CGRectContainsRect(self.view.bounds, craftViewFrame)) 
-    {
-        translationY                                = craftViewFrame.origin.y - self.craftImageView.frame.origin.y;
-        //        craftViewFrame.origin.y                     = self.craftImageView.frame.origin.y;
-    }
-    
-    //    craftImageView.frame                            = craftViewFrame;
-    
-    
     [self transformCraftAttitudeInView];   
     
     [self diplayCraftAttitudeData];
     
+    [self craftTranslation];
+}
+
+
+
+#pragma mark - Action Methods
+- (IBAction)userAcceleration
+{
+    if (self.userAccel) 
+    {
+        self.userAccel                              = NO;
+    }
+    else
+    {
+        self.userAccel                              = YES;
+    }
 }
 
 

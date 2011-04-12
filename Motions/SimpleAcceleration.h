@@ -15,6 +15,8 @@
 
 @interface SimpleAcceleration : UIViewController 
 {    
+    BOOL                            userAccel;
+    
     CMMotionManager                 *motionManager;
     CMAttitude                      *deviceAttitude;
     CMAttitude                      *defaultAttitude;
@@ -27,6 +29,7 @@
     NSInteger                       animationFrameInterval;
     CADisplayLink                   *displayLink;
     
+    UIView                          *craftView;
     UIImageView                     *craftImageView;
     
     UITextField                     *pitchTextField;
@@ -40,6 +43,8 @@
     Spacecraft                      *spacecraft;
 }
 
+@property                                           BOOL                        userAccel;
+
 // CADisplayLink Properties
 @property (readonly, nonatomic, getter=isAnimating) BOOL                        animating;
 @property (nonatomic)                               NSInteger                   animationFrameInterval;
@@ -47,8 +52,9 @@
 @property (readonly)                                CMMotionManager             *motionManager;
 @property (nonatomic, retain)                       CMAttitude                  *deviceAttitude;
 @property (nonatomic, retain)                       CMAttitude                  *defaultAttitude;
-@property (nonatomic, readwrite)                       CMAcceleration              *deviceAcceleration;
+@property (nonatomic, readwrite)                    CMAcceleration              *deviceAcceleration;
 
+@property (nonatomic, retain)       IBOutlet        UIView                      *craftView;
 @property (nonatomic, retain)       IBOutlet        UIImageView                 *craftImageView;
 
 @property (nonatomic, retain)       IBOutlet        UITextField                 *pitchTextField;
@@ -67,6 +73,7 @@
 - (void)stopAnimation;
 
 // Roll, Pitch, Yaw Default Setting Method
+- (IBAction)userAcceleration;
 - (IBAction)setDefaultAttitude;
 
 

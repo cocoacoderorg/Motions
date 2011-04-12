@@ -12,6 +12,15 @@
 		E66EC473134D758C0083D707 /* SR-71-Color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E66EC471134D758C0083D707 /* SR-71-Color@2x.png */; };
 		E66EC476134D75C10083D707 /* SR-71-Color.png in Resources */ = {isa = PBXBuildFile; fileRef = E66EC475134D75C10083D707 /* SR-71-Color.png */; };
 		E66EC488134D827D0083D707 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66EC487134D827D0083D707 /* QuartzCore.framework */; };
+		E6B04E921353F9A10043F539 /* Motions_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E911353F9A10043F539 /* Motions_Icon@2x.png */; };
+		E6B04E951353F9B10043F539 /* Motions_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E941353F9B10043F539 /* Motions_Icon.png */; };
+		E6B04E971353F9BF0043F539 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E961353F9BF0043F539 /* Default@2x.png */; };
+		E6B04E991353F9C80043F539 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E981353F9C80043F539 /* Default.png */; };
+		E6B04E9B1353FE640043F539 /* SimpleAcceleration.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E9A1353FE640043F539 /* SimpleAcceleration.xib */; };
+		E6B04EA01353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E9C1353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd.png */; };
+		E6B04EA11353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E9D1353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd@2x.png */; };
+		E6B04EAA135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04EA8135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd.png */; };
+		E6B04EAB135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04EA9135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd@2x.png */; };
 		E6B7BE25134D975600D84F88 /* dark_light_cog_alt_24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B7BE24134D975600D84F88 /* dark_light_cog_alt_24x24.png */; };
 		E6CA98171343C86300CCADF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CA98161343C86300CCADF9 /* UIKit.framework */; };
 		E6CA98191343C86300CCADF9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CA98181343C86300CCADF9 /* Foundation.framework */; };
@@ -44,6 +53,15 @@
 		E66EC471134D758C0083D707 /* SR-71-Color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color@2x.png"; sourceTree = "<group>"; };
 		E66EC475134D75C10083D707 /* SR-71-Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color.png"; sourceTree = "<group>"; };
 		E66EC487134D827D0083D707 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E6B04E911353F9A10043F539 /* Motions_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Motions_Icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		E6B04E941353F9B10043F539 /* Motions_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Motions_Icon.png; sourceTree = SOURCE_ROOT; };
+		E6B04E961353F9BF0043F539 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		E6B04E981353F9C80043F539 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		E6B04E9A1353FE640043F539 /* SimpleAcceleration.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleAcceleration.xib; sourceTree = "<group>"; };
+		E6B04E9C1353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Accelerometer_Sensor_Clr_Bkgnd.png; sourceTree = "<group>"; };
+		E6B04E9D1353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Accelerometer_Sensor_Clr_Bkgnd@2x.png"; sourceTree = "<group>"; };
+		E6B04EA8135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gyroscope_Sensor_Clr_Bkgnd.png; sourceTree = "<group>"; };
+		E6B04EA9135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gyroscope_Sensor_Clr_Bkgnd@2x.png"; sourceTree = "<group>"; };
 		E6B7BE24134D975600D84F88 /* dark_light_cog_alt_24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dark_light_cog_alt_24x24.png; sourceTree = "<group>"; };
 		E6CA98121343C86300CCADF9 /* Motions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6CA98161343C86300CCADF9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -170,6 +188,7 @@
 				E6CA98281343C86300CCADF9 /* MainWindow.xib */,
 				E63A6A841343DFD2005E88B7 /* MotionsRootViewController.xib */,
 				E6E7C2E81344244700C6AF46 /* MotionsTableViewCell.xib */,
+				E6B04E9A1353FE640043F539 /* SimpleAcceleration.xib */,
 				E6E7C32D13452D2200C6AF46 /* SimpleDeviceMotion.xib */,
 				E6E7C2EA1344244700C6AF46 /* MotionsWebView.xib */,
 			);
@@ -179,6 +198,14 @@
 		E6CA98521343CC9700CCADF9 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				E6B04E981353F9C80043F539 /* Default.png */,
+				E6B04E961353F9BF0043F539 /* Default@2x.png */,
+				E6B04E941353F9B10043F539 /* Motions_Icon.png */,
+				E6B04E911353F9A10043F539 /* Motions_Icon@2x.png */,
+				E6B04E9C1353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd.png */,
+				E6B04E9D1353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd@2x.png */,
+				E6B04EA8135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd.png */,
+				E6B04EA9135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd@2x.png */,
 				E6B7BE24134D975600D84F88 /* dark_light_cog_alt_24x24.png */,
 				E6E7C3041344294500C6AF46 /* Mercury_Messenger.png */,
 				E66EC475134D75C10083D707 /* SR-71-Color.png */,
@@ -258,6 +285,15 @@
 				E66EC473134D758C0083D707 /* SR-71-Color@2x.png in Resources */,
 				E66EC476134D75C10083D707 /* SR-71-Color.png in Resources */,
 				E6B7BE25134D975600D84F88 /* dark_light_cog_alt_24x24.png in Resources */,
+				E6B04E921353F9A10043F539 /* Motions_Icon@2x.png in Resources */,
+				E6B04E951353F9B10043F539 /* Motions_Icon.png in Resources */,
+				E6B04E971353F9BF0043F539 /* Default@2x.png in Resources */,
+				E6B04E991353F9C80043F539 /* Default.png in Resources */,
+				E6B04E9B1353FE640043F539 /* SimpleAcceleration.xib in Resources */,
+				E6B04EA01353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd.png in Resources */,
+				E6B04EA11353FEB10043F539 /* Accelerometer_Sensor_Clr_Bkgnd@2x.png in Resources */,
+				E6B04EAA135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd.png in Resources */,
+				E6B04EAB135400770043F539 /* Gyroscope_Sensor_Clr_Bkgnd@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

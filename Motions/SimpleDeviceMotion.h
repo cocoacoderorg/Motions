@@ -51,7 +51,7 @@
 @property (readonly)                                CMMotionManager             *motionManager;
 @property (nonatomic, retain)                       CMAttitude                  *deviceAttitude;
 @property (nonatomic, retain)                       CMAttitude                  *defaultAttitude;
-@property (nonatomic, readwrite)                       CMAcceleration              *deviceAcceleration;
+@property (nonatomic, readwrite)                    CMAcceleration              *deviceAcceleration;
 
 @property (nonatomic, retain)       IBOutlet        UIView                      *craftView;
 @property (nonatomic, retain)       IBOutlet        UIImageView                 *craftImageView;

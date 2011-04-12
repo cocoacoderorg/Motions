@@ -454,7 +454,7 @@
     //
     // Since we're using the craft's view's frame, this will recenter the view.
     //
-    self.craftView.center                           = CGPointMake(160.0, 230.0);
+    self.craftView.center                           = CGPointMake(160.0, 260.0);
 
     //
     // For centering a view that has been transformed via an Affine Transform.

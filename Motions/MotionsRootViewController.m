@@ -17,6 +17,7 @@
 
 @synthesize viewControllers;
 
+@synthesize simpleAcceleration;
 @synthesize simpleDeviceMotion;
 
 @synthesize motionsTableViewCell;
@@ -161,7 +162,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *MotionsCellIdentifier = @"Cell";
+    static NSString *MotionsCellIdentifier  = @"Cell";
     
     UITableViewCell *cell                   = [tableView dequeueReusableCellWithIdentifier:MotionsCellIdentifier];
     if (cell == nil) 
@@ -182,8 +183,8 @@
     NSUInteger row                          = [indexPath row];
     NSDictionary *rowData                   = [self.viewControllers objectAtIndex:row];
     
-    self.motionName.text                   = [rowData objectForKey:@"Name"];
-    self.motionSummary.text                = [rowData objectForKey:@"Summary"];
+    self.motionName.text                    = [rowData objectForKey:@"Name"];
+    self.motionSummary.text                 = [rowData objectForKey:@"Summary"];
     
     return cell;
 }
@@ -241,11 +242,12 @@
     {
         [self.navigationController pushViewController:self.uikitScreenshotViewController animated:YES];
     }
-    
+    */
     if ( row == 1 ) 
     {
-        [self.navigationController pushViewController:self.opengGLESScreenshotViewController animated:YES];
+        [self.navigationController pushViewController:self.simpleAcceleration animated:YES];
     }
+    /*
     if ( row == 2 ) 
     {
         [self.navigationController pushViewController:self.uikitScreenshotViewController animated:YES];

@@ -11,6 +11,7 @@
 
 
 
+@class SimpleAcceleration;
 @class SimpleDeviceMotion;
 
 
@@ -24,6 +25,7 @@
 
 @property (nonatomic, retain)                       NSArray                     *viewControllers;
 
+@property (nonatomic, retain)       IBOutlet        SimpleAcceleration          *simpleAcceleration;
 @property (nonatomic, retain)       IBOutlet        SimpleDeviceMotion          *simpleDeviceMotion;
 
 @property (nonatomic, retain)       IBOutlet        UITableViewCell             *motionsTableViewCell;

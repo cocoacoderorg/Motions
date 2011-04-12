@@ -75,7 +75,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{60, 105}, {200, 250}}</string>
+						<string key="NSFrame">{{60, 135}, {200, 250}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="234193271"/>
@@ -88,7 +88,7 @@
 					<object class="IBUILabel" id="717594690">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 20}, {50, 30}}</string>
+						<string key="NSFrame">{{20, 50}, {50, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="838127031"/>
@@ -115,7 +115,7 @@
 					<object class="IBUILabel" id="905179961">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{135, 20}, {50, 30}}</string>
+						<string key="NSFrame">{{135, 50}, {50, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="887261052"/>
@@ -143,7 +143,7 @@
 					<object class="IBUILabel" id="887261052">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{250, 20}, {50, 30}}</string>
+						<string key="NSFrame">{{250, 50}, {50, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="953519348"/>
@@ -163,7 +163,7 @@
 					<object class="IBUITextField" id="838127031">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{26, 43}, {40, 30}}</string>
+						<string key="NSFrame">{{26, 73}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="905179961"/>
@@ -194,7 +194,7 @@
 					<object class="IBUITextField" id="359998616">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{145, 43}, {40, 30}}</string>
+						<string key="NSFrame">{{145, 73}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="505426739"/>
@@ -219,7 +219,7 @@
 					<object class="IBUITextField" id="496324323">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{259, 43}, {40, 30}}</string>
+						<string key="NSFrame">{{259, 73}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="952254943"/>
@@ -244,7 +244,7 @@
 					<object class="IBUIButton" id="401568849">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{275, 414.5}, {23, 23}}</string>
+						<string key="NSFrame">{{249.5, 393}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -261,8 +261,6 @@
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<int key="IBUIButtonType">1</int>
-						<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -277,13 +275,13 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">dark_light_cog_alt_24x24.png</string>
+							<string key="NSResourceName">Gyroscope_Sensor_Clr_Bkgnd@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUITextField" id="953519348">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{26, 67}, {40, 30}}</string>
+						<string key="NSFrame">{{26, 97}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="359998616"/>
@@ -307,7 +305,7 @@
 					<object class="IBUITextField" id="505426739">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{145, 67}, {40, 30}}</string>
+						<string key="NSFrame">{{145, 97}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="496324323"/>
@@ -331,7 +329,7 @@
 					<object class="IBUITextField" id="952254943">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{259, 67}, {40, 30}}</string>
+						<string key="NSFrame">{{259, 97}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="141049168"/>
@@ -360,6 +358,10 @@
 					<reference key="NSCustomColorSpace" ref="544227045"/>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<int key="IBUIBarStyle">2</int>
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -463,17 +465,17 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="138336966"/>
+							<reference ref="401568849"/>
+							<reference ref="141049168"/>
 							<reference ref="717594690"/>
 							<reference ref="905179961"/>
 							<reference ref="887261052"/>
 							<reference ref="838127031"/>
 							<reference ref="359998616"/>
 							<reference ref="496324323"/>
-							<reference ref="401568849"/>
 							<reference ref="953519348"/>
 							<reference ref="505426739"/>
 							<reference ref="952254943"/>
-							<reference ref="141049168"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -731,13 +733,13 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>Gyroscope_Sensor_Clr_Bkgnd@2x.png</string>
 				<string>Mercury_Messenger@2x.png</string>
-				<string>dark_light_cog_alt_24x24.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{88, 88}</string>
 				<string>{640, 960}</string>
-				<string>{26, 26}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">301</string>
