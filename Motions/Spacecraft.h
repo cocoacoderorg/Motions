@@ -19,12 +19,12 @@
     NSNumber            *y;
     NSNumber            *z;
     
-    CGFloat             pitch;
-    CGFloat             roll;
-    CGFloat             yaw;
+    NSNumber            *pitch;
+    NSNumber            *roll;
+    NSNumber            *yaw;
     
-    CGFloat             lateralAcceration;
-    CGFloat             longitudinalAcceleration;
+    NSNumber            *lateralAcceration;
+    NSNumber            *longitudinalAcceleration;
 }
 
 @property (nonatomic, retain)       UIImage             *spacecraftImage;
@@ -33,11 +33,11 @@
 @property (nonatomic, retain)       NSNumber            *y;
 @property (nonatomic, retain)       NSNumber            *z;
 
-@property                           CGFloat             pitch;
-@property                           CGFloat             roll;
-@property                           CGFloat             yaw;
+@property (nonatomic, retain)       NSNumber            *pitch;
+@property (nonatomic, retain)       NSNumber            *roll;
+@property (nonatomic, retain)       NSNumber            *yaw;
 
-@property                           CGFloat             lateralAcceleration;
-@property                           CGFloat             longitudinalAcceleration;
+@property (nonatomic, retain)       NSNumber            *lateralAcceleration;
+@property (nonatomic, retain)       NSNumber            *longitudinalAcceleration;
 
 @end

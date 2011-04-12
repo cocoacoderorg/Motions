@@ -59,12 +59,12 @@
         self.y                              = [NSNumber numberWithFloat:0.0];
         self.z                              = [NSNumber numberWithFloat:0.0];
         
-        self.pitch                          = 0.0;
-        self.roll                           = 0.0;
-        self.yaw                            = 0.0;
+        self.pitch                          = [NSNumber numberWithFloat:0.0];
+        self.roll                           = [NSNumber numberWithFloat:0.0];
+        self.yaw                            = [NSNumber numberWithFloat:0.0];
         
-        self.lateralAcceleration            = 0.0;
-        self.longitudinalAcceleration       = 0.0;
+        self.lateralAcceleration            = [NSNumber numberWithFloat:0.0];
+        self.longitudinalAcceleration       = [NSNumber numberWithFloat:0.0];
     }
     return self;
 }

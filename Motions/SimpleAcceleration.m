@@ -287,9 +287,9 @@
     CATransform3D transformedView                   = CATransform3DIdentity;
     //    transformedView.m34                           = -1.0 / ( 100.0 * self.perspective );
     transformedView.m34                             = -1.0 / ( 100.0 * 10.0 );
-    transformedView                                 = CATransform3DRotate(transformedView, self.spacecraft.roll, 0.0, -1.0, 0.0);
-    transformedView                                 = CATransform3DRotate(transformedView, self.spacecraft.pitch, -1.0, 0.0, 0.0);
-    transformedView                                 = CATransform3DRotate(transformedView, self.spacecraft.yaw, 0.0, 0.0, -1.0);
+    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
+    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], -1.0, 0.0, 0.0);
+    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
     //    transformedView                                 = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
     transformedView                                 = CATransform3DTranslate(transformedView, translationX, translationY, 0.0);
     self.craftImageView.layer.transform             = transformedView;
@@ -315,17 +315,17 @@
     //
     if ( ( self.deviceAttitude.pitch ) < M_PI / 3.0  && ( self.deviceAttitude.pitch ) > -M_PI / 3.0 )
     {
-        self.spacecraft.pitch                       = (CGFloat)self.deviceAttitude.pitch; 
+        self.spacecraft.pitch                       = [NSNumber numberWithFloat:self.deviceAttitude.pitch]; 
     }
     
     if ( ( self.deviceAttitude.roll ) < M_PI / 3.0  && ( self.deviceAttitude.roll ) > -M_PI / 3.0 )
     {
-        self.spacecraft.roll                        = (CGFloat)self.deviceAttitude.roll;
+        self.spacecraft.roll                        = [NSNumber numberWithFloat:self.deviceAttitude.roll];
     }
     
     if ( ( self.deviceAttitude.yaw ) < M_PI / 3.0  && ( self.deviceAttitude.yaw ) > -M_PI / 3.0 )
     {
-        self.spacecraft.yaw                         = (CGFloat)self.deviceAttitude.yaw;
+        self.spacecraft.yaw                         = [NSNumber numberWithFloat:self.deviceAttitude.yaw];
     }
 }
 
@@ -385,8 +385,8 @@
     //
     // Acceleration for left-right, front-back movement
     //
-    self.spacecraft.lateralAcceleration             = (CGFloat)self.motionManager.deviceMotion.userAcceleration.x;
-    self.spacecraft.longitudinalAcceleration        = (CGFloat)self.motionManager.deviceMotion.userAcceleration.y;
+    self.spacecraft.lateralAcceleration             = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.x];
+    self.spacecraft.longitudinalAcceleration        = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.y];
     
     //    self.spacecraft.lateralAcceleration             = (CGFloat)self.motionManager.accelerometerData.acceleration.x;
     //    self.spacecraft.longitudinalAcceleration        = (CGFloat)self.motionManager.accelerometerData.acceleration.y;
@@ -398,8 +398,8 @@
         NSLog(@"Yup, craft view in main view\n\n");
     }
     
-    craftViewFrame.origin.x                         += self.spacecraft.lateralAcceleration * MOTION_SCALE;
-    translationX                                    += self.spacecraft.lateralAcceleration * MOTION_SCALE;
+    craftViewFrame.origin.x                         += [self.spacecraft.lateralAcceleration floatValue] * MOTION_SCALE;
+    translationX                                    += [self.spacecraft.lateralAcceleration floatValue] * MOTION_SCALE;
     NSLog(@"craftViewFrame.origin.x = %f\n\n", craftViewFrame.origin.x);
     
     if (!CGRectContainsRect(self.view.bounds, craftViewFrame)) 
@@ -412,7 +412,7 @@
         //        craftViewFrame.origin.x                     = self.craftImageView.frame.origin.x;
     }
     
-    craftViewFrame.origin.y                         -= self.spacecraft.longitudinalAcceleration * MOTION_SCALE;
+    craftViewFrame.origin.y                         -= [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_SCALE;
     if (!CGRectContainsRect(self.view.bounds, craftViewFrame)) 
     {
         translationY                                = craftViewFrame.origin.y - self.craftImageView.frame.origin.y;
