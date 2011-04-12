@@ -173,6 +173,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     //    self.defaultAttitude                            = self.motionManager.deviceMotion.attitude;
+    self.userAccel                                  = YES;
 }
 
 
@@ -183,8 +184,6 @@
     
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.craftView                                  = nil;
-    self.craftImageView                             = nil;
     self.pitchTextField                             = nil;
     self.rollTextField                              = nil;
     self.yawTextField                               = nil;
@@ -385,7 +384,8 @@
 
 
 
-#define MOTION_SCALE  1.0;
+#define MOTION_USERACCEL_SCALE  35.0;
+#define MOTION_ACCEL_SCALE      10.0;
 
 - (void)craftTranslation
 {
@@ -396,21 +396,28 @@
     //
     // Acceleration for left-right, front-back movement
     //
-    if (userAccel) 
+    if (self.userAccel) 
     {
-        self.spacecraft.lateralAcceleration         = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.x];
-        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithFloat:self.motionManager.deviceMotion.userAcceleration.y];
+        self.spacecraft.lateralAcceleration         = [NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x];
+        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.y];
     }
     else
     {
-        self.spacecraft.lateralAcceleration         = [NSNumber numberWithFloat:self.motionManager.accelerometerData.acceleration.x];
-        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithFloat:self.motionManager.accelerometerData.acceleration.y];
+        self.spacecraft.lateralAcceleration         = [NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x];
+        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.y];
     }
 
     //
     // X-Translation
     //
-    craftViewFrame.origin.x                         += [self.spacecraft.lateralAcceleration floatValue] * MOTION_SCALE;
+    if (self.userAccel) 
+    {
+        craftViewFrame.origin.x                     += [self.spacecraft.lateralAcceleration floatValue] * MOTION_USERACCEL_SCALE;
+    }
+    else
+    {
+        craftViewFrame.origin.x                     += [self.spacecraft.lateralAcceleration floatValue] * MOTION_ACCEL_SCALE;
+    }
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.x                     = self.craftView.frame.origin.x;
@@ -419,13 +426,21 @@
     //
     // Y-Translation
     //
-    craftViewFrame.origin.y                         += [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_SCALE;
+    if (self.userAccel) 
+    {
+        craftViewFrame.origin.y                     -= [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_USERACCEL_SCALE;
+    }
+    else
+    {
+        craftViewFrame.origin.y                     -= [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_ACCEL_SCALE;
+    }
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.y                     = self.craftView.frame.origin.y;
     }    
     
     self.craftView.frame                            = craftViewFrame;
+    
     self.spacecraft.x                               = [NSNumber numberWithFloat:self.craftView.center.x];
     self.spacecraft.y                               = [NSNumber numberWithFloat:self.craftView.center.y];
     self.spacecraft.z                               = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
@@ -438,7 +453,7 @@
 {
     [self craftAttitude];
     
-    [self transformCraftAttitudeInView];   
+//    [self transformCraftAttitudeInView];   
     
     [self diplayCraftAttitudeData];
     
@@ -458,6 +473,8 @@
     {
         self.userAccel                              = YES;
     }
+    
+    [self setDefaultAttitude];
 }
 
 
@@ -465,7 +482,7 @@
 - (IBAction)setDefaultAttitude
 {
     self.defaultAttitude                            = self.motionManager.deviceMotion.attitude;
-    self.craftImageView.center                      = CGPointMake(160.0, 260.0);
+    self.craftView.center                           = CGPointMake(160.0, 260.0);
 }
 
 

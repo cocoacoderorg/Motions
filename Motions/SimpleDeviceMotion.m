@@ -178,9 +178,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.craftView                                  = nil;
-    self.craftImageView                             = nil;
-
     self.pitchTextField                             = nil;
     self.rollTextField                              = nil;
     self.yawTextField                               = nil;
