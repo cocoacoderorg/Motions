@@ -294,7 +294,6 @@
 - (void)transformCraftAttitudeInView
 {
     CATransform3D transformedView                   = CATransform3DIdentity;
-    //    transformedView.m34                           = -1.0 / ( 100.0 * self.perspective );
     transformedView.m34                             = -1.0 / ( 100.0 * 10.0 );
     transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
     transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], -1.0, 0.0, 0.0);
@@ -384,8 +383,8 @@
 
 
 
-#define MOTION_USERACCEL_SCALE  35.0;
-#define MOTION_ACCEL_SCALE      10.0;
+#define MOTION_USERACCEL_SCALE  35.0
+#define MOTION_ACCEL_SCALE      10.0
 
 - (void)craftTranslation
 {
@@ -406,18 +405,13 @@
         self.spacecraft.lateralAcceleration         = [NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x];
         self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.y];
     }
+    
+    CGFloat accelMultiplier                         = ( self.userAccel == TRUE ) ? MOTION_USERACCEL_SCALE : MOTION_ACCEL_SCALE;
 
     //
     // X-Translation
     //
-    if (self.userAccel) 
-    {
-        craftViewFrame.origin.x                     += [self.spacecraft.lateralAcceleration floatValue] * MOTION_USERACCEL_SCALE;
-    }
-    else
-    {
-        craftViewFrame.origin.x                     += [self.spacecraft.lateralAcceleration floatValue] * MOTION_ACCEL_SCALE;
-    }
+    craftViewFrame.origin.x                         += [self.spacecraft.lateralAcceleration floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.x                     = self.craftView.frame.origin.x;
@@ -426,14 +420,7 @@
     //
     // Y-Translation
     //
-    if (self.userAccel) 
-    {
-        craftViewFrame.origin.y                     -= [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_USERACCEL_SCALE;
-    }
-    else
-    {
-        craftViewFrame.origin.y                     -= [self.spacecraft.longitudinalAcceleration floatValue] * MOTION_ACCEL_SCALE;
-    }
+    craftViewFrame.origin.y                         -= [self.spacecraft.longitudinalAcceleration floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.y                     = self.craftView.frame.origin.y;
@@ -465,14 +452,7 @@
 #pragma mark - Action Methods
 - (IBAction)userAcceleration
 {
-    if (self.userAccel) 
-    {
-        self.userAccel                              = NO;
-    }
-    else
-    {
-        self.userAccel                              = YES;
-    }
+    self.userAccel                                  = ( self.userAccel == TRUE ) ? NO : YES;
     
     [self setDefaultAttitude];
 }
