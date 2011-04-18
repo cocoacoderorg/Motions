@@ -21,7 +21,7 @@
 
 - (void)transformCraftAttitudeInView;
 - (void)craftAttitude;
-- (void)craftAcceleration;
+//- (void)craftAcceleration; // not implemented.
 - (void)diplayCraftAttitudeData;
 - (void)craftTranslation;
 
