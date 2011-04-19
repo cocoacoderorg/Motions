@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J3250</string>
+		<string key="IBDocument.SystemVersion">10J3331a</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -67,7 +67,7 @@
 							<object class="IBUIImageView" id="234193271">
 								<reference key="NSNextResponder" ref="141049168"/>
 								<int key="NSvFlags">269</int>
-								<string key="NSFrameSize">{200, 250}</string>
+								<string key="NSFrameSize">{100, 125}</string>
 								<reference key="NSSuperview" ref="141049168"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="178580253"/>
@@ -75,7 +75,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{60, 135}, {200, 250}}</string>
+						<string key="NSFrame">{{110, 197.5}, {100, 125}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="234193271"/>
@@ -83,6 +83,7 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MSAwAA</bytes>
 						</object>
+						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUILabel" id="717594690">

@@ -20,11 +20,11 @@
     CMAttitude                      *defaultAttitude;
     CMAcceleration                  *deviceAcceleration;
     
-    CGFloat                         oldTranslationX;
-    CGFloat                         translationX;
+    NSInteger                       oldTranslationX;
+    NSInteger                       translationX;
     
-    CGFloat                         oldTranslationY;
-    CGFloat                         translationY;
+    NSInteger                       oldTranslationY;
+    NSInteger                       translationY;
     
     BOOL                            animating;
     NSInteger                       animationFrameInterval;

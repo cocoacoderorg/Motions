@@ -132,7 +132,7 @@
     // Do any additional setup after loading the view from its nib.
     self.spacecraft                                 = [[Spacecraft alloc] init];
 
-    self.motionManager.deviceMotionUpdateInterval   = 1.0 / 40.0; // 50 Hz
+    self.motionManager.deviceMotionUpdateInterval   = 1.0 / 60.0; // 50 Hz
 
     animating                                       = FALSE;
     animationFrameInterval                          = 1;
@@ -140,8 +140,8 @@
     
     self.craftImageView.image                       = self.spacecraft.spacecraftImage;
     
-//    translationX                                    = 0.0;
-//    translationY                                    = 0.0;
+//    translationX                                    = 0;
+//    translationY                                    = 0;
     
     NSLog(@"main view frame = (%f, %f, %f, %f)\n\n", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 }
@@ -399,8 +399,8 @@
 
 - (void)craftTranslation
 {
-//    translationX                                    += self.spacecraft.roll * MOTION_SCALE;
-//    translationY                                    += self.spacecraft.pitch * MOTION_SCALE;
+//    translationX                                    += ( NSInteger ) self.spacecraft.roll * MOTION_SCALE;
+//    translationY                                    += ( NSInteger ) self.spacecraft.pitch * MOTION_SCALE;
     
     CGRect mainViewFrame                            = self.view.frame;
     CGRect craftViewFrame                           = self.craftView.frame;

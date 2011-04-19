@@ -452,7 +452,7 @@
 #pragma mark - Action Methods
 - (IBAction)userAcceleration
 {
-    self.userAccel                                  = ( self.userAccel == TRUE ) ? NO : YES;
+    self.userAccel                                  = ( TRUE == self.userAccel ) ? NO : YES;
     
     [self setDefaultAttitude];
 }
