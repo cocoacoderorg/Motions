@@ -8,7 +8,8 @@
 
 #import "MotionsRootViewController.h"
 
-
+#import "SimpleAcceleration.h"
+#import "SimpleDeviceMotion.h"
 
 
 @implementation MotionsRootViewController
