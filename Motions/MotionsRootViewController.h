@@ -10,9 +10,9 @@
 
 
 
-
 @class SimpleAcceleration;
 @class SimpleDeviceMotion;
+
 
 
 
