@@ -47,7 +47,14 @@
 
 #import "HoverView.h"
 
+
+
 @implementation HoverView
+
+
+@synthesize hudVisible;
+
+
 
 - (void)fillRoundedRect:(CGRect)rect inContext:(CGContextRef)context
 {

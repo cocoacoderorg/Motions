@@ -11,6 +11,10 @@
 
 
 @class Spacecraft;
+@class HoverView;
+
+
+extern NSString *Show_HoverView;
 
 
 @interface SimpleDeviceMotion : UIViewController 
@@ -41,6 +45,9 @@
     UITextField                     *origRollTextField;
     UITextField                     *origYawTextField;
     
+    HoverView                       *hudView;
+	UIButton                        *settingsButton;
+    
     Spacecraft                      *spacecraft;
 }
 
@@ -64,6 +71,9 @@
 @property (nonatomic, retain)       IBOutlet        UITextField                 *origRollTextField;
 @property (nonatomic, retain)       IBOutlet        UITextField                 *origYawTextField;
 
+@property (nonatomic, retain)       IBOutlet        HoverView                   *hudView;
+@property (nonatomic, retain)       IBOutlet        UIButton                    *settingsButton;           
+
 @property (nonatomic, retain)                       Spacecraft                  *spacecraft;
 
 
@@ -72,6 +82,7 @@
 - (void)stopAnimation;
 
 // Roll, Pitch, Yaw Default Setting Method
+- (IBAction)showHUD;
 - (IBAction)setDefaultAttitude;
 
 

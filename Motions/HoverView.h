@@ -48,6 +48,10 @@
 #import <UIKit/UIKit.h>
 
 @interface HoverView : UIView
-{ }
+{ 
+    BOOL                                            hudVisible;
+}
+
+@property                   BOOL                    hudVisible;
 
 @end

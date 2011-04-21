@@ -12,6 +12,7 @@
 #import <CoreMotion/CoreMotion.h>
 
 #import "Spacecraft.h"
+#import "HoverView.h"
 
 
 
@@ -26,6 +27,8 @@
 
 @end
 
+
+NSString *Show_HoverView = @"SHOW";
 
 
 @implementation SimpleDeviceMotion
@@ -50,6 +53,9 @@
 @synthesize origPitchTextField;
 @synthesize origRollTextField;
 @synthesize origYawTextField;
+
+@synthesize hudView;
+@synthesize settingsButton;
 
 @synthesize spacecraft;
 
@@ -142,6 +148,8 @@
     
 //    translationX                                    = 0;
 //    translationY                                    = 0;
+    
+    self.hudView.hudVisible                         = NO;
     
     NSLog(@"main view frame = (%f, %f, %f, %f)\n\n", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 }
@@ -444,8 +452,9 @@
 
 
 
-- (IBAction)setDefaultAttitude
+- (void)setDefaultAttitude
 {
+    NSLog(@"just reset attitude");
     self.defaultAttitude                            = self.motionManager.deviceMotion.attitude;
     
     //
@@ -459,6 +468,54 @@
 //    translationX                                    = 0.0;
 //    translationY                                    = 0.0;
 //    self.craftView.transform                        = CGAffineTransformMakeTranslation(translationX, translationX);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.hudView.alpha                          = 0.0;
+        self.hudView.hudVisible                     = NO;
+    }];
+}
+
+
+
+- (IBAction)showHUD
+{
+    if (!self.hudView.hudVisible) 
+    {
+        //
+        // Make the HUD view visible for some period
+        //
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            //
+            // Bring up the HUD
+            //
+            self.hudView.alpha                          = 1.0;
+            self.hudView.hudVisible                     = YES;
+            self.hudView.layer.zPosition                = 200.0;
+        }
+                         completion:^( BOOL finished ){
+                             if (finished) 
+                             {
+                                 //
+                                 // Let the HUD remain visible
+                                 //
+                                 self.hudView.alpha                             = 1.0;
+                                 self.hudView.layer.zPosition                   = 200.0;
+                             }
+                         }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            //
+            // Let the HUD remain visible
+            //
+            self.hudView.alpha                      = 0.0;
+            self.hudView.hudVisible                 = NO;
+        }];
+        
+    }
 }
 
 
