@@ -58,7 +58,7 @@
 
 - (void)fillRoundedRect:(CGRect)rect inContext:(CGContextRef)context
 {
-    float radius = 5.0f;
+    float radius = 10.0f;
     
     CGContextBeginPath(context);
 	CGContextSetGrayFillColor(context, 0.8, 0.5);
