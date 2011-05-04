@@ -12,7 +12,7 @@
 #import <CoreMotion/CoreMotion.h>
 
 #import "Spacecraft.h"
-#import "HoverView.h"
+#import "HudView.h"
 
 
 
@@ -42,6 +42,7 @@ NSString *Show_HoverView = @"SHOW";
 @synthesize displayLink;
 @synthesize animating;
 @synthesize animationFrameInterval;
+@synthesize myOtherButton;
 
 @synthesize craftView;
 @synthesize craftImageView;
@@ -58,6 +59,7 @@ NSString *Show_HoverView = @"SHOW";
 @synthesize settingsButton;
 
 @synthesize spacecraft;
+@synthesize myLilOtherButton;
 
 
 
@@ -85,6 +87,8 @@ NSString *Show_HoverView = @"SHOW";
     
     [spacecraft release];
     
+    [myOtherButton release];
+    [myLilOtherButton release];
     [super dealloc];
 }
 
@@ -92,7 +96,7 @@ NSString *Show_HoverView = @"SHOW";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self                                = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
     {
         // Custom initialization
@@ -117,12 +121,12 @@ NSString *Show_HoverView = @"SHOW";
 
 - (CMMotionManager *)motionManager
 {
-//    CMMotionManager *aMotionManager                 = nil;
+//    CMMotionManager *aMotionManager = nil;
     
-    id appDelegate                                  = [UIApplication sharedApplication].delegate;
+    id appDelegate = [UIApplication sharedApplication].delegate;
     if ([appDelegate respondsToSelector:@selector(motionManager)])
     {
-        motionManager                               = [appDelegate motionManager];
+        motionManager = [appDelegate motionManager];
     }
     return motionManager;
 }
@@ -136,20 +140,20 @@ NSString *Show_HoverView = @"SHOW";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.spacecraft                                 = [[Spacecraft alloc] init];
+    self.spacecraft = [[Spacecraft alloc] init];
 
-    self.motionManager.deviceMotionUpdateInterval   = 1.0 / 60.0; // 50 Hz
+    self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0; // 50 Hz
 
-    animating                                       = FALSE;
-    animationFrameInterval                          = 1;
-    self.displayLink                                = nil;
+    animating = FALSE;
+    animationFrameInterval = 1;
+    self.displayLink = nil;
     
-    self.craftImageView.image                       = self.spacecraft.spacecraftImage;
+    self.craftImageView.image = self.spacecraft.spacecraftImage;
     
-//    translationX                                    = 0;
-//    translationY                                    = 0;
+//    translationX = 0;
+//    translationY = 0;
     
-    self.hudView.hudVisible                         = NO;
+    self.hudView.hudVisible = NO;
     
     NSLog(@"main view frame = (%f, %f, %f, %f)\n\n", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 }
@@ -183,16 +187,18 @@ NSString *Show_HoverView = @"SHOW";
 
 - (void)viewDidUnload
 {
+    [self setMyOtherButton:nil];
+    [self setMyLilOtherButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.pitchTextField                             = nil;
-    self.rollTextField                              = nil;
-    self.yawTextField                               = nil;
+    self.pitchTextField = nil;
+    self.rollTextField = nil;
+    self.yawTextField = nil;
     
-    self.origPitchTextField                         = nil;
-    self.origRollTextField                          = nil;
-    self.origYawTextField                           = nil;
+    self.origPitchTextField = nil;
+    self.origRollTextField = nil;
+    self.origYawTextField = nil;
 }
 
 
@@ -249,12 +255,12 @@ NSString *Show_HoverView = @"SHOW";
     if (!animating) 
     {
         //NSLog(@"animating was NO, now is YES");
-        CADisplayLink *aDisplayLink                 = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(drawView)];
+        CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(drawView)];
         [aDisplayLink setFrameInterval:animationFrameInterval];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        self.displayLink                            = aDisplayLink;
+        self.displayLink = aDisplayLink;
         
-        animating                                   = TRUE;
+        animating = TRUE;
     }
     
     if (self.motionManager.isDeviceMotionAvailable)
@@ -275,7 +281,7 @@ NSString *Show_HoverView = @"SHOW";
     if (animating) 
     {
         [self.displayLink invalidate];
-        self.displayLink                            = nil;
+        self.displayLink = nil;
         animating = FALSE;
     }
     
@@ -293,15 +299,15 @@ NSString *Show_HoverView = @"SHOW";
 
 - (void)transformCraftAttitudeInView
 {
-    CATransform3D transformedView                   = CATransform3DIdentity;
-//    transformedView.m34                           = -1.0 / ( 100.0 * self.perspective );
-    transformedView.m34                             = -1.0 / ( 100.0 * 10.0 );
-    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
-    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], -1.0, 0.0, 0.0);
-    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
-    transformedView                                 = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
-    self.craftView.layer.sublayerTransform          = transformedView;
-    self.craftView.layer.zPosition                  = 100.0;
+    CATransform3D transformedView = CATransform3DIdentity;
+//    transformedView.m34 = -1.0 / ( 100.0 * self.perspective );
+    transformedView.m34 = 1.0 / ( 100.0 * 1.0 );
+    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
+    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], 1.0, 0.0, 0.0);
+    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
+    transformedView = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
+    self.craftView.layer.sublayerTransform = transformedView;
+    self.craftView.layer.zPosition = 100.0;
    
     
 //    CGAffineTransform translationTransform          = CGAffineTransformIdentity;
@@ -330,7 +336,7 @@ NSString *Show_HoverView = @"SHOW";
     //
     // Calibrate for defaultAttitude
     //
-    self.deviceAttitude                             = self.motionManager.deviceMotion.attitude;
+    self.deviceAttitude = self.motionManager.deviceMotion.attitude;
     
     if (self.defaultAttitude != nil) 
     {
@@ -342,17 +348,17 @@ NSString *Show_HoverView = @"SHOW";
     //
     if ( ( self.deviceAttitude.pitch ) < M_PI / 3.0  && ( self.deviceAttitude.pitch ) > -M_PI / 3.0 )
     {
-        self.spacecraft.pitch                       = [NSNumber numberWithFloat:self.deviceAttitude.pitch];
+        self.spacecraft.pitch = [NSNumber numberWithFloat:self.deviceAttitude.pitch];
     }
     
     if ( ( self.deviceAttitude.roll ) < M_PI / 3.0  && ( self.deviceAttitude.roll ) > -M_PI / 3.0 )
     {
-        self.spacecraft.roll                        = [NSNumber numberWithFloat:self.deviceAttitude.roll];
+        self.spacecraft.roll = [NSNumber numberWithFloat:self.deviceAttitude.roll];
     }
     
     if ( ( self.deviceAttitude.yaw ) < M_PI / 3.0  && ( self.deviceAttitude.yaw ) > -M_PI / 3.0 )
     {
-        self.spacecraft.yaw                         = [NSNumber numberWithFloat:self.deviceAttitude.yaw];
+        self.spacecraft.yaw = [NSNumber numberWithFloat:self.deviceAttitude.yaw];
     }
 }
 
@@ -368,37 +374,37 @@ NSString *Show_HoverView = @"SHOW";
     //
     // Display the updated data, the original data, and the bias data
     //
-    NSNumber *origPitchNumber                       = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.pitch * 180.0 / M_PI];
-    NSNumber *pitchNumber                           = [NSNumber numberWithDouble:self.deviceAttitude.pitch * 180.0 / M_PI];
-    NSString *pitchString                           = [NSString stringWithFormat:@"%2.0f", [pitchNumber doubleValue]];
-    pitchString                                     = [pitchString stringByAppendingString:@"°"];
-    self.pitchTextField.text                        = pitchString;
+    NSNumber *origPitchNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.pitch * 180.0 / M_PI];
+    NSNumber *pitchNumber = [NSNumber numberWithDouble:self.deviceAttitude.pitch * 180.0 / M_PI];
+    NSString *pitchString = [NSString stringWithFormat:@"%2.0f", [pitchNumber doubleValue]];
+    pitchString = [pitchString stringByAppendingString:@"°"];
+    self.pitchTextField.text = pitchString;
     
-    pitchString                                     = [NSString stringWithFormat:@"%2.0f", [origPitchNumber doubleValue]];
-    pitchString                                     = [pitchString stringByAppendingFormat:@"°"];
-    self.origPitchTextField.text                    = pitchString;
-    
-    
-    NSNumber *origRollNumber                        = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.roll * 180.0 / M_PI];
-    NSNumber *rollNumber                            = [NSNumber numberWithDouble:self.deviceAttitude.roll * 180.0 / M_PI];
-    NSString *rollString                            = [NSString stringWithFormat:@"%2.0f", [rollNumber doubleValue]];
-    rollString                                      = [rollString stringByAppendingString:@"°"];
-    self.rollTextField.text                         = rollString;
-    
-    rollString                                      = [NSString stringWithFormat:@"%2.0f", [origRollNumber doubleValue]];
-    rollString                                      = [rollString stringByAppendingString:@"°"];
-    self.origRollTextField.text                     = rollString;
+    pitchString = [NSString stringWithFormat:@"%2.0f", [origPitchNumber doubleValue]];
+    pitchString = [pitchString stringByAppendingFormat:@"°"];
+    self.origPitchTextField.text = pitchString;
     
     
-    NSNumber *origYawNumber                         = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.yaw * 180.0 / M_PI];
-    NSNumber *yawNumber                             = [NSNumber numberWithDouble:self.deviceAttitude.yaw * 180.0 / M_PI];
-    NSString *yawString                             = [NSString stringWithFormat:@"%2.0f", [yawNumber doubleValue]];
-    yawString                                       = [yawString stringByAppendingString:@"°"];
-    self.yawTextField.text                          = yawString;
+    NSNumber *origRollNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.roll * 180.0 / M_PI];
+    NSNumber *rollNumber = [NSNumber numberWithDouble:self.deviceAttitude.roll * 180.0 / M_PI];
+    NSString *rollString = [NSString stringWithFormat:@"%2.0f", [rollNumber doubleValue]];
+    rollString = [rollString stringByAppendingString:@"°"];
+    self.rollTextField.text = rollString;
     
-    yawString                                       = [NSString stringWithFormat:@"%2.0f", [origYawNumber doubleValue]];
-    yawString                                       = [yawString stringByAppendingString:@"°"];
-    self.origYawTextField.text                      = yawString;
+    rollString = [NSString stringWithFormat:@"%2.0f", [origRollNumber doubleValue]];
+    rollString = [rollString stringByAppendingString:@"°"];
+    self.origRollTextField.text = rollString;
+    
+    
+    NSNumber *origYawNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.yaw * 180.0 / M_PI];
+    NSNumber *yawNumber = [NSNumber numberWithDouble:self.deviceAttitude.yaw * 180.0 / M_PI];
+    NSString *yawString = [NSString stringWithFormat:@"%2.0f", [yawNumber doubleValue]];
+    yawString = [yawString stringByAppendingString:@"°"];
+    self.yawTextField.text = yawString;
+    
+    yawString = [NSString stringWithFormat:@"%2.0f", [origYawNumber doubleValue]];
+    yawString = [yawString stringByAppendingString:@"°"];
+    self.origYawTextField.text = yawString;
 }
 
 
@@ -407,34 +413,34 @@ NSString *Show_HoverView = @"SHOW";
 
 - (void)craftTranslation
 {
-//    translationX                                    += ( NSInteger ) self.spacecraft.roll * MOTION_SCALE;
-//    translationY                                    += ( NSInteger ) self.spacecraft.pitch * MOTION_SCALE;
+//    translationX += ( NSInteger ) self.spacecraft.roll * MOTION_SCALE;
+//    translationY += ( NSInteger ) self.spacecraft.pitch * MOTION_SCALE;
     
-    CGRect mainViewFrame                            = self.view.frame;
-    CGRect craftViewFrame                           = self.craftView.frame;
+    CGRect mainViewFrame = self.view.frame;
+    CGRect craftViewFrame = self.craftView.frame;
     
     //
     // X-Translation
     //
-    craftViewFrame.origin.x                         += [self.spacecraft.roll floatValue] * MOTION_SCALE;
+    craftViewFrame.origin.x += [self.spacecraft.roll floatValue] * MOTION_SCALE;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
-        craftViewFrame.origin.x                     = self.craftView.frame.origin.x;
+        craftViewFrame.origin.x = self.craftView.frame.origin.x;
     }
     
     //
     // Y-Translation
     //
-    craftViewFrame.origin.y                         += [self.spacecraft.pitch floatValue] * MOTION_SCALE;
+    craftViewFrame.origin.y += [self.spacecraft.pitch floatValue] * MOTION_SCALE;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
-        craftViewFrame.origin.y                     = self.craftView.frame.origin.y;
+        craftViewFrame.origin.y = self.craftView.frame.origin.y;
     }    
     
-    self.craftView.frame                            = craftViewFrame;
-    self.spacecraft.x                               = [NSNumber numberWithFloat:self.craftView.center.x];
-    self.spacecraft.y                               = [NSNumber numberWithFloat:self.craftView.center.y];
-    self.spacecraft.z                               = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
+    self.craftView.frame = craftViewFrame;
+    self.spacecraft.x = [NSNumber numberWithFloat:self.craftView.center.x];
+    self.spacecraft.y = [NSNumber numberWithFloat:self.craftView.center.y];
+    self.spacecraft.z = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
 }
 
 
@@ -455,23 +461,23 @@ NSString *Show_HoverView = @"SHOW";
 - (void)setDefaultAttitude
 {
     NSLog(@"just reset attitude");
-    self.defaultAttitude                            = self.motionManager.deviceMotion.attitude;
+    self.defaultAttitude = self.motionManager.deviceMotion.attitude;
     
     //
     // Since we're using the craft's view's frame, this will recenter the view.
     //
-    self.craftView.center                           = CGPointMake(160.0, 260.0);
+    self.craftView.center = CGPointMake(160.0, 260.0);
 
     //
     // For centering a view that has been transformed via an Affine Transform.
     //
-//    translationX                                    = 0.0;
-//    translationY                                    = 0.0;
-//    self.craftView.transform                        = CGAffineTransformMakeTranslation(translationX, translationX);
+//    translationX = 0.0;
+//    translationY = 0.0;
+//    self.craftView.transform = CGAffineTransformMakeTranslation(translationX, translationX);
     
     [UIView animateWithDuration:0.5 animations:^{
-        self.hudView.alpha                          = 0.0;
-        self.hudView.hudVisible                     = NO;
+        self.hudView.alpha = 0.0;
+        self.hudView.hudVisible = NO;
     }];
 }
 
@@ -489,9 +495,9 @@ NSString *Show_HoverView = @"SHOW";
             //
             // Bring up the HUD
             //
-            self.hudView.alpha                          = 1.0;
-            self.hudView.hudVisible                     = YES;
-            self.hudView.layer.zPosition                = 200.0;
+            self.hudView.alpha = 1.0;
+            self.hudView.hudVisible = YES;
+            self.hudView.layer.zPosition = 200.0;
         }
                          completion:^( BOOL finished ){
                              if (finished) 
@@ -499,8 +505,8 @@ NSString *Show_HoverView = @"SHOW";
                                  //
                                  // Let the HUD remain visible
                                  //
-                                 self.hudView.alpha                             = 1.0;
-                                 self.hudView.layer.zPosition                   = 200.0;
+                                 self.hudView.alpha = 1.0;
+                                 self.hudView.layer.zPosition = 200.0;
                              }
                          }];
     }
@@ -511,8 +517,8 @@ NSString *Show_HoverView = @"SHOW";
             //
             // Let the HUD remain visible
             //
-            self.hudView.alpha                      = 0.0;
-            self.hudView.hudVisible                 = NO;
+            self.hudView.alpha = 0.0;
+            self.hudView.hudVisible = NO;
         }];
         
     }

@@ -11,7 +11,7 @@
 
 
 @class Spacecraft;
-@class HoverView;
+@class HudView;
 
 
 extern NSString *Show_HoverView;
@@ -32,6 +32,7 @@ extern NSString *Show_HoverView;
     
     BOOL                            animating;
     NSInteger                       animationFrameInterval;
+    UIButton *myOtherButton;
     CADisplayLink                   *displayLink;
     
     UIView                          *craftView;
@@ -45,15 +46,17 @@ extern NSString *Show_HoverView;
     UITextField                     *origRollTextField;
     UITextField                     *origYawTextField;
     
-    HoverView                       *hudView;
+    HudView                       *hudView;
 	UIButton                        *settingsButton;
     
     Spacecraft                      *spacecraft;
+    UIButton *myLilOtherButton;
 }
 
 // CADisplayLink Properties
 @property (readonly, nonatomic, getter=isAnimating) BOOL                        animating;
 @property (nonatomic)                               NSInteger                   animationFrameInterval;
+@property (nonatomic, retain) IBOutlet UIButton *myOtherButton;
 
 @property (readonly)                                CMMotionManager             *motionManager;
 @property (nonatomic, retain)                       CMAttitude                  *deviceAttitude;
@@ -71,10 +74,11 @@ extern NSString *Show_HoverView;
 @property (nonatomic, retain)       IBOutlet        UITextField                 *origRollTextField;
 @property (nonatomic, retain)       IBOutlet        UITextField                 *origYawTextField;
 
-@property (nonatomic, retain)       IBOutlet        HoverView                   *hudView;
+@property (nonatomic, retain)       IBOutlet        HudView                     *hudView;
 @property (nonatomic, retain)       IBOutlet        UIButton                    *settingsButton;           
 
 @property (nonatomic, retain)                       Spacecraft                  *spacecraft;
+@property (nonatomic, retain) IBOutlet UIButton *myLilOtherButton;
 
 
 // Animation Methods

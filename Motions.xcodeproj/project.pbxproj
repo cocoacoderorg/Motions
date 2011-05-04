@@ -12,7 +12,7 @@
 		E66EC473134D758C0083D707 /* SR-71-Color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E66EC471134D758C0083D707 /* SR-71-Color@2x.png */; };
 		E66EC476134D75C10083D707 /* SR-71-Color.png in Resources */ = {isa = PBXBuildFile; fileRef = E66EC475134D75C10083D707 /* SR-71-Color.png */; };
 		E66EC488134D827D0083D707 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66EC487134D827D0083D707 /* QuartzCore.framework */; };
-		E69CF4661360E8E9000C6FD9 /* HoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = E69CF4651360E8E9000C6FD9 /* HoverView.m */; };
+		E69CF4661360E8E9000C6FD9 /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = E69CF4651360E8E9000C6FD9 /* HudView.m */; };
 		E6B04E921353F9A10043F539 /* Motions_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E911353F9A10043F539 /* Motions_Icon@2x.png */; };
 		E6B04E951353F9B10043F539 /* Motions_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E941353F9B10043F539 /* Motions_Icon.png */; };
 		E6B04E971353F9BF0043F539 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6B04E961353F9BF0043F539 /* Default@2x.png */; };
@@ -54,8 +54,8 @@
 		E66EC471134D758C0083D707 /* SR-71-Color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color@2x.png"; sourceTree = "<group>"; };
 		E66EC475134D75C10083D707 /* SR-71-Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color.png"; sourceTree = "<group>"; };
 		E66EC487134D827D0083D707 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E69CF4641360E8E9000C6FD9 /* HoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoverView.h; sourceTree = "<group>"; };
-		E69CF4651360E8E9000C6FD9 /* HoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoverView.m; sourceTree = "<group>"; };
+		E69CF4641360E8E9000C6FD9 /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HudView.h; sourceTree = "<group>"; };
+		E69CF4651360E8E9000C6FD9 /* HudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudView.m; sourceTree = "<group>"; };
 		E6B04E911353F9A10043F539 /* Motions_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Motions_Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		E6B04E941353F9B10043F539 /* Motions_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Motions_Icon.png; sourceTree = SOURCE_ROOT; };
 		E6B04E961353F9BF0043F539 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				E6CA98361343C9F600CCADF9 /* iPad */,
-				E69CF4641360E8E9000C6FD9 /* HoverView.h */,
-				E69CF4651360E8E9000C6FD9 /* HoverView.m */,
+				E69CF4641360E8E9000C6FD9 /* HudView.h */,
+				E69CF4651360E8E9000C6FD9 /* HudView.m */,
 				E6CA98251343C86300CCADF9 /* MotionsAppDelegate.h */,
 				E6CA98261343C86300CCADF9 /* MotionsAppDelegate.m */,
 				E6CA982B1343C86300CCADF9 /* MotionsRootViewController.h */,
@@ -316,7 +316,7 @@
 				E6E7C30A1345142700C6AF46 /* Spacecraft.m in Sources */,
 				E6E7C32E13452D2200C6AF46 /* SimpleDeviceMotion.m in Sources */,
 				E6128F661351792C0049E23A /* SimpleAcceleration.m in Sources */,
-				E69CF4661360E8E9000C6FD9 /* HoverView.m in Sources */,
+				E69CF4661360E8E9000C6FD9 /* HudView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
