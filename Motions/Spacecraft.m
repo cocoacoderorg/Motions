@@ -15,6 +15,16 @@
 
 
 
+@interface Spacecraft() 
+
+// 
+// Nada
+//
+
+@end
+
+
+
 @implementation Spacecraft
 
 
@@ -29,8 +39,8 @@
 @synthesize roll;
 @synthesize yaw;
 
-@synthesize lateralAcceleration;
-@synthesize longitudinalAcceleration;
+@synthesize lateralTranslation;
+@synthesize longitudinalTranslation;
 
 
 
@@ -53,21 +63,42 @@
 {
     if ((self = [super init])) 
     {
-        self.spacecraftImage                = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SR-71-Color" ofType:@"png"]];
+        self.spacecraftImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SR-71-Color" ofType:@"png"]];
         
-        self.x                              = [NSNumber numberWithFloat:0.0];
-        self.y                              = [NSNumber numberWithFloat:0.0];
-        self.z                              = [NSNumber numberWithFloat:0.0];
+        self.x = [NSNumber numberWithFloat:0.0];
+        self.y = [NSNumber numberWithFloat:0.0];
+        self.z = [NSNumber numberWithFloat:0.0];
         
-        self.pitch                          = [NSNumber numberWithFloat:0.0];
-        self.roll                           = [NSNumber numberWithFloat:0.0];
-        self.yaw                            = [NSNumber numberWithFloat:0.0];
+        self.pitch = [NSNumber numberWithFloat:0.0];
+        self.roll = [NSNumber numberWithFloat:0.0];
+        self.yaw = [NSNumber numberWithFloat:0.0];
         
-        self.lateralAcceleration            = [NSNumber numberWithFloat:0.0];
-        self.longitudinalAcceleration       = [NSNumber numberWithFloat:0.0];
+        self.lateralTranslation = [NSNumber numberWithFloat:0.0];
+        self.longitudinalTranslation = [NSNumber numberWithFloat:0.0];
     }
     return self;
 }
+
+
+
+#pragma mark - Translation Methods
+
+//
+// Translation Methods...very much in flux, so be patient and check to see if code has been updated.
+//
+
+- (void)lateralTranslationFromRoll:(NSNumber *)rollAngle
+{
+    self.lateralTranslation = [NSNumber numberWithDouble:[rollAngle doubleValue] * 4.0];
+}
+
+
+
+- (void)longitudinalTranslationFromThrust:(NSNumber *)thrust
+{
+    self.longitudinalTranslation = [NSNumber numberWithDouble:[thrust doubleValue] * 4.0];
+}
+
 
 
 @end

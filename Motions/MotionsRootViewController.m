@@ -52,29 +52,29 @@
 {
     [super viewDidLoad];
     
-    NSDictionary    *screenshotDictionary1      = [[NSDictionary alloc] initWithObjectsAndKeys:@"Accelerometers", @"Name",
+    NSDictionary *screenshotDictionary1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Accelerometers", @"Name",
                                                    @"Accelerometers are nice...", @"Summary", nil];
     
-    NSDictionary    *screenshotDictionary2      = [[NSDictionary alloc] initWithObjectsAndKeys:@"User Acceleration", @"Name",
+    NSDictionary *screenshotDictionary2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"User Acceleration", @"Name",
                                                    @"Accelerometers are nice...", @"Summary", nil];
     
-    NSDictionary    *screenshotDictionary3      = [[NSDictionary alloc] initWithObjectsAndKeys:@"Gyros", @"Name",
+    NSDictionary *screenshotDictionary3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Gyros", @"Name",
                                                    @"And gyros are pretty sweet...", @"Summary", nil];
     
-    NSDictionary    *screenshotDictionary4      = [[NSDictionary alloc] initWithObjectsAndKeys:@"Device Motion", @"Name",
+    NSDictionary *screenshotDictionary4 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Device Motion", @"Name",
                                                    @"But device motion is the best.", @"Summary", nil];
     
-    NSDictionary    *screenshotDictionary5      = [[NSDictionary alloc] initWithObjectsAndKeys:@"More Motion", @"Name",
+    NSDictionary *screenshotDictionary5 = [[NSDictionary alloc] initWithObjectsAndKeys:@"More Motion", @"Name",
                                                    @"We're not done just yet.", @"Summary", nil];
     
-    NSArray         *anArray                    = [[NSArray alloc] initWithObjects:
-                                                   screenshotDictionary1, 
-                                                   screenshotDictionary2, 
-                                                   screenshotDictionary3, 
-                                                   screenshotDictionary4,
-                                                   screenshotDictionary5, nil];
+    NSArray *anArray = [[NSArray alloc] initWithObjects:
+                        screenshotDictionary1, 
+                        screenshotDictionary2, 
+                        screenshotDictionary3, 
+                        screenshotDictionary4,
+                        screenshotDictionary5, nil];
     
-    self.viewControllers                        = anArray;
+    self.viewControllers = anArray;
     
     [screenshotDictionary1 release];
     [screenshotDictionary2 release];
@@ -118,10 +118,10 @@
     [super viewDidUnload];
 
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    self.simpleDeviceMotion                     = nil;
-    self.motionsTableViewCell                   = nil;
-    self.motionName                             = nil;
-    self.motionSummary                          = nil;
+    self.simpleDeviceMotion = nil;
+    self.motionsTableViewCell = nil;
+    self.motionName = nil;
+    self.motionSummary = nil;
 }
 
 
@@ -163,16 +163,16 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *MotionsCellIdentifier  = @"Cell";
+    static NSString *MotionsCellIdentifier = @"Cell";
     
-    UITableViewCell *cell                   = [tableView dequeueReusableCellWithIdentifier:MotionsCellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MotionsCellIdentifier];
     if (cell == nil) 
     {
-        NSArray    *nibArray                = [[NSBundle mainBundle] loadNibNamed:@"MotionsTableViewCell" owner:self options:nil];
+        NSArray    *nibArray = [[NSBundle mainBundle] loadNibNamed:@"MotionsTableViewCell" owner:self options:nil];
         
         if ( [nibArray count] > 0 ) 
         {
-            cell                            = self.motionsTableViewCell;
+            cell = self.motionsTableViewCell;
         }
         else
         {
@@ -181,11 +181,11 @@
     }
     
     // Configure the cell.
-    NSUInteger row                          = [indexPath row];
-    NSDictionary *rowData                   = [self.viewControllers objectAtIndex:row];
+    NSUInteger row = [indexPath row];
+    NSDictionary *rowData = [self.viewControllers objectAtIndex:row];
     
-    self.motionName.text                    = [rowData objectForKey:@"Name"];
-    self.motionSummary.text                 = [rowData objectForKey:@"Summary"];
+    self.motionName.text = [rowData objectForKey:@"Name"];
+    self.motionSummary.text = [rowData objectForKey:@"Summary"];
     
     return cell;
 }
@@ -237,7 +237,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger row                          = [indexPath row];
+    NSUInteger row = [indexPath row];
     /*
     if ( row == 0 ) 
     {

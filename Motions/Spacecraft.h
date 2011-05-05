@@ -23,8 +23,8 @@
     NSNumber            *roll;
     NSNumber            *yaw;
     
-    NSNumber            *lateralAcceration;
-    NSNumber            *longitudinalAcceleration;
+    NSNumber            *lateralTranslation;
+    NSNumber            *longitudinalTranslation;
 }
 
 @property (nonatomic, retain)       UIImage             *spacecraftImage;
@@ -37,7 +37,14 @@
 @property (nonatomic, retain)       NSNumber            *roll;
 @property (nonatomic, retain)       NSNumber            *yaw;
 
-@property (nonatomic, retain)       NSNumber            *lateralAcceleration;
-@property (nonatomic, retain)       NSNumber            *longitudinalAcceleration;
+@property (nonatomic, retain)       NSNumber            *lateralTranslation;
+@property (nonatomic, retain)       NSNumber            *longitudinalTranslation;
+
+
+
+- (void)lateralTranslationFromRoll:(NSNumber *)rollAngle;
+- (void)longitudinalTranslationFromThrust:(NSNumber *)thrust;
+
+
 
 @end

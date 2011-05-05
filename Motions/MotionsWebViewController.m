@@ -74,7 +74,7 @@
         {
             [self.documentationWebView stopLoading];
         }
-        self.documentationWebView.delegate         = nil;    // disconnect the delegate as the webview is hidden
+        self.documentationWebView.delegate = nil;    // disconnect the delegate as the webview is hidden
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
 }
@@ -85,7 +85,7 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    self.documentationWebView                      = nil;
+    self.documentationWebView = nil;
 }
 
 

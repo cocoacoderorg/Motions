@@ -88,7 +88,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self                                = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) 
     {
         // Custom initialization
@@ -113,12 +113,12 @@
 
 - (CMMotionManager *)motionManager
 {
-//    CMMotionManager *aMotionManager                 = nil;
+//    CMMotionManager *aMotionManager = nil;
     
-    id appDelegate                                  = [UIApplication sharedApplication].delegate;
+    id appDelegate = [UIApplication sharedApplication].delegate;
     if ([appDelegate respondsToSelector:@selector(motionManager)])
     {
-        motionManager                               = [appDelegate motionManager];
+        motionManager = [appDelegate motionManager];
     }
     return motionManager;
 }
@@ -132,22 +132,22 @@
 {
     [super viewDidLoad];
     
-    self.userAccel                                  = YES;
+    self.userAccel = YES;
     
     // Do any additional setup after loading the view from its nib.
-    self.spacecraft                                 = [[Spacecraft alloc] init];
+    self.spacecraft = [[Spacecraft alloc] init];
     
-    self.motionManager.deviceMotionUpdateInterval   = 1.0 / 40.0; // 40 Hz
-    self.motionManager.accelerometerUpdateInterval  = 1.0 / 40.0;
+    self.motionManager.deviceMotionUpdateInterval = 1.0 / 40.0; // 40 Hz
+    self.motionManager.accelerometerUpdateInterval = 1.0 / 40.0;
     
-    animating                                       = FALSE;
-    animationFrameInterval                          = 1;
-    self.displayLink                                = nil;
+    animating = FALSE;
+    animationFrameInterval = 1;
+    self.displayLink = nil;
     
-    self.craftImageView.image                       = self.spacecraft.spacecraftImage;
+    self.craftImageView.image = self.spacecraft.spacecraftImage;
     
-    translationX                                    = 0.0;
-    translationY                                    = 0.0;
+    translationX = 0.0;
+    translationY = 0.0;
 }
 
 
@@ -172,8 +172,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //    self.defaultAttitude                            = self.motionManager.deviceMotion.attitude;
-    self.userAccel                                  = YES;
+    //    self.defaultAttitude = self.motionManager.deviceMotion.attitude;
+    self.userAccel = YES;
 }
 
 
@@ -184,13 +184,13 @@
     
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.pitchTextField                             = nil;
-    self.rollTextField                              = nil;
-    self.yawTextField                               = nil;
+    self.pitchTextField = nil;
+    self.rollTextField = nil;
+    self.yawTextField = nil;
     
-    self.origPitchTextField                         = nil;
-    self.origRollTextField                          = nil;
-    self.origYawTextField                           = nil;
+    self.origPitchTextField = nil;
+    self.origRollTextField = nil;
+    self.origYawTextField = nil;
 }
 
 
@@ -247,12 +247,12 @@
     if (!animating) 
     {
         //NSLog(@"animating was NO, now is YES");
-        CADisplayLink *aDisplayLink                 = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(drawView)];
+        CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(drawView)];
         [aDisplayLink setFrameInterval:animationFrameInterval];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        self.displayLink                            = aDisplayLink;
+        self.displayLink = aDisplayLink;
         
-        animating                                   = TRUE;
+        animating = TRUE;
     }
     
     if (self.motionManager.isDeviceMotionAvailable)
@@ -293,14 +293,14 @@
 
 - (void)transformCraftAttitudeInView
 {
-    CATransform3D transformedView                   = CATransform3DIdentity;
-    transformedView.m34                             = -1.0 / ( 100.0 * 10.0 );
-    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
-    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], -1.0, 0.0, 0.0);
-    transformedView                                 = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
-    transformedView                                 = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
-    self.craftView.layer.sublayerTransform          = transformedView;
-    self.craftView.layer.zPosition                  = 100.0;
+    CATransform3D transformedView = CATransform3DIdentity;
+    transformedView.m34 = -1.0 / ( 100.0 * 10.0 );
+    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
+    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], -1.0, 0.0, 0.0);
+    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
+    transformedView = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
+    self.craftView.layer.sublayerTransform = transformedView;
+    self.craftView.layer.zPosition = 100.0;
 }
 
 
@@ -322,17 +322,17 @@
     //
     if ( ( self.deviceAttitude.pitch ) < M_PI / 3.0  && ( self.deviceAttitude.pitch ) > -M_PI / 3.0 )
     {
-        self.spacecraft.pitch                       = [NSNumber numberWithFloat:self.deviceAttitude.pitch]; 
+        self.spacecraft.pitch = [NSNumber numberWithFloat:self.deviceAttitude.pitch]; 
     }
     
     if ( ( self.deviceAttitude.roll ) < M_PI / 3.0  && ( self.deviceAttitude.roll ) > -M_PI / 3.0 )
     {
-        self.spacecraft.roll                        = [NSNumber numberWithFloat:self.deviceAttitude.roll];
+        self.spacecraft.roll = [NSNumber numberWithFloat:self.deviceAttitude.roll];
     }
     
     if ( ( self.deviceAttitude.yaw ) < M_PI / 3.0  && ( self.deviceAttitude.yaw ) > -M_PI / 3.0 )
     {
-        self.spacecraft.yaw                         = [NSNumber numberWithFloat:self.deviceAttitude.yaw];
+        self.spacecraft.yaw = [NSNumber numberWithFloat:self.deviceAttitude.yaw];
     }
 }
 
@@ -348,37 +348,37 @@
     //
     // Display the updated data, the original data, and the bias data
     //
-    NSNumber *origPitchNumber                       = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.pitch * 180.0 / M_PI];
-    NSNumber *pitchNumber                           = [NSNumber numberWithDouble:self.deviceAttitude.pitch * 180.0 / M_PI];
-    NSString *pitchString                           = [NSString stringWithFormat:@"%2.0f", [pitchNumber doubleValue]];
-    pitchString                                     = [pitchString stringByAppendingString:@"°"];
-    self.pitchTextField.text                        = pitchString;
+    NSNumber *origPitchNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.pitch * 180.0 / M_PI];
+    NSNumber *pitchNumber = [NSNumber numberWithDouble:self.deviceAttitude.pitch * 180.0 / M_PI];
+    NSString *pitchString = [NSString stringWithFormat:@"%2.0f", [pitchNumber doubleValue]];
+    pitchString = [pitchString stringByAppendingString:@"°"];
+    self.pitchTextField.text = pitchString;
     
-    pitchString                                     = [NSString stringWithFormat:@"%2.0f", [origPitchNumber doubleValue]];
-    pitchString                                     = [pitchString stringByAppendingFormat:@"°"];
-    self.origPitchTextField.text                    = pitchString;
-    
-    
-    NSNumber *origRollNumber                        = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.roll * 180.0 / M_PI];
-    NSNumber *rollNumber                            = [NSNumber numberWithDouble:self.deviceAttitude.roll * 180.0 / M_PI];
-    NSString *rollString                            = [NSString stringWithFormat:@"%2.0f", [rollNumber doubleValue]];
-    rollString                                      = [rollString stringByAppendingString:@"°"];
-    self.rollTextField.text                         = rollString;
-    
-    rollString                                      = [NSString stringWithFormat:@"%2.0f", [origRollNumber doubleValue]];
-    rollString                                      = [rollString stringByAppendingString:@"°"];
-    self.origRollTextField.text                     = rollString;
+    pitchString = [NSString stringWithFormat:@"%2.0f", [origPitchNumber doubleValue]];
+    pitchString = [pitchString stringByAppendingFormat:@"°"];
+    self.origPitchTextField.text = pitchString;
     
     
-    NSNumber *origYawNumber                         = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.yaw * 180.0 / M_PI];
-    NSNumber *yawNumber                             = [NSNumber numberWithDouble:self.deviceAttitude.yaw * 180.0 / M_PI];
-    NSString *yawString                             = [NSString stringWithFormat:@"%2.0f", [yawNumber doubleValue]];
-    yawString                                       = [yawString stringByAppendingString:@"°"];
-    self.yawTextField.text                          = yawString;
+    NSNumber *origRollNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.roll * 180.0 / M_PI];
+    NSNumber *rollNumber = [NSNumber numberWithDouble:self.deviceAttitude.roll * 180.0 / M_PI];
+    NSString *rollString = [NSString stringWithFormat:@"%2.0f", [rollNumber doubleValue]];
+    rollString = [rollString stringByAppendingString:@"°"];
+    self.rollTextField.text = rollString;
     
-    yawString                                       = [NSString stringWithFormat:@"%2.0f", [origYawNumber doubleValue]];
-    yawString                                       = [yawString stringByAppendingString:@"°"];
-    self.origYawTextField.text                      = yawString;
+    rollString = [NSString stringWithFormat:@"%2.0f", [origRollNumber doubleValue]];
+    rollString = [rollString stringByAppendingString:@"°"];
+    self.origRollTextField.text = rollString;
+    
+    
+    NSNumber *origYawNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.yaw * 180.0 / M_PI];
+    NSNumber *yawNumber = [NSNumber numberWithDouble:self.deviceAttitude.yaw * 180.0 / M_PI];
+    NSString *yawString = [NSString stringWithFormat:@"%2.0f", [yawNumber doubleValue]];
+    yawString = [yawString stringByAppendingString:@"°"];
+    self.yawTextField.text = yawString;
+    
+    yawString = [NSString stringWithFormat:@"%2.0f", [origYawNumber doubleValue]];
+    yawString = [yawString stringByAppendingString:@"°"];
+    self.origYawTextField.text = yawString;
 }
 
 
@@ -388,8 +388,8 @@
 
 - (void)craftTranslation
 {
-    CGRect mainViewFrame                            = self.view.frame;
-    CGRect craftViewFrame                           = self.craftView.frame;
+    CGRect mainViewFrame = self.view.frame;
+    CGRect craftViewFrame = self.craftView.frame;
     
     
     //
@@ -397,40 +397,40 @@
     //
     if (self.userAccel) 
     {
-        self.spacecraft.lateralAcceleration         = [NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x];
-        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.y];
+        [self.spacecraft lateralTranslationFromRoll:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x]];
+        [self.spacecraft longitudinalTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.y]];
     }
     else
     {
-        self.spacecraft.lateralAcceleration         = [NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x];
-        self.spacecraft.longitudinalAcceleration    = [NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.y];
+        [self.spacecraft lateralTranslationFromRoll:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x]];
+        [self.spacecraft longitudinalTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.y]];
     }
     
-    CGFloat accelMultiplier                         = ( self.userAccel == TRUE ) ? MOTION_USERACCEL_SCALE : MOTION_ACCEL_SCALE;
+    CGFloat accelMultiplier = ( TRUE == self.userAccel ) ? MOTION_USERACCEL_SCALE : MOTION_ACCEL_SCALE;
 
     //
     // X-Translation
     //
-    craftViewFrame.origin.x                         += [self.spacecraft.lateralAcceleration floatValue] * accelMultiplier;
+    craftViewFrame.origin.x += [self.spacecraft.lateralTranslation floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
-        craftViewFrame.origin.x                     = self.craftView.frame.origin.x;
+        craftViewFrame.origin.x = self.craftView.frame.origin.x;
     }
     
     //
     // Y-Translation
     //
-    craftViewFrame.origin.y                         -= [self.spacecraft.longitudinalAcceleration floatValue] * accelMultiplier;
+    craftViewFrame.origin.y -= [self.spacecraft.longitudinalTranslation floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
-        craftViewFrame.origin.y                     = self.craftView.frame.origin.y;
+        craftViewFrame.origin.y = self.craftView.frame.origin.y;
     }    
     
-    self.craftView.frame                            = craftViewFrame;
+    self.craftView.frame = craftViewFrame;
     
-    self.spacecraft.x                               = [NSNumber numberWithFloat:self.craftView.center.x];
-    self.spacecraft.y                               = [NSNumber numberWithFloat:self.craftView.center.y];
-    self.spacecraft.z                               = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
+    self.spacecraft.x = [NSNumber numberWithFloat:self.craftView.center.x];
+    self.spacecraft.y = [NSNumber numberWithFloat:self.craftView.center.y];
+    self.spacecraft.z = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
 }
 
 
@@ -452,7 +452,7 @@
 #pragma mark - Action Methods
 - (IBAction)userAcceleration
 {
-    self.userAccel                                  = ( TRUE == self.userAccel ) ? NO : YES;
+    self.userAccel = ( TRUE == self.userAccel ) ? NO : YES;
     
     [self setDefaultAttitude];
 }
@@ -461,8 +461,8 @@
 
 - (IBAction)setDefaultAttitude
 {
-    self.defaultAttitude                            = self.motionManager.deviceMotion.attitude;
-    self.craftView.center                           = CGPointMake(160.0, 260.0);
+    self.defaultAttitude = self.motionManager.deviceMotion.attitude;
+    self.craftView.center = CGPointMake(160.0, 260.0);
 }
 
 

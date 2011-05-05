@@ -24,6 +24,7 @@
 - (void)craftAttitude;
 - (void)diplayCraftAttitudeData;
 - (void)craftTranslation;
+- (void)gyroNotSupported;
 
 @end
 
@@ -42,7 +43,6 @@ NSString *Show_HoverView = @"SHOW";
 @synthesize displayLink;
 @synthesize animating;
 @synthesize animationFrameInterval;
-@synthesize myOtherButton;
 
 @synthesize craftView;
 @synthesize craftImageView;
@@ -59,8 +59,6 @@ NSString *Show_HoverView = @"SHOW";
 @synthesize settingsButton;
 
 @synthesize spacecraft;
-@synthesize myLilOtherButton;
-
 
 
 
@@ -87,8 +85,6 @@ NSString *Show_HoverView = @"SHOW";
     
     [spacecraft release];
     
-    [myOtherButton release];
-    [myLilOtherButton release];
     [super dealloc];
 }
 
@@ -187,9 +183,8 @@ NSString *Show_HoverView = @"SHOW";
 
 - (void)viewDidUnload
 {
-    [self setMyOtherButton:nil];
-    [self setMyLilOtherButton:nil];
     [super viewDidUnload];
+
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.pitchTextField = nil;
@@ -269,7 +264,11 @@ NSString *Show_HoverView = @"SHOW";
     }
     else 
     {
-        // Deal with this issue...
+        NSLog(@"Oops!");
+        if ([self respondsToSelector:@selector(gyroNotSupported)]) 
+        {
+            [self gyroNotSupported];
+        }
     }
 }
 
@@ -292,6 +291,40 @@ NSString *Show_HoverView = @"SHOW";
     else 
     {
         // Deal with this issue...
+    }
+}
+
+
+
+
+- (void)craftAttitude
+{
+    //
+    // Calibrate for defaultAttitude
+    //
+    self.deviceAttitude = self.motionManager.deviceMotion.attitude;
+    
+    if (self.defaultAttitude != nil) 
+    {
+        [self.deviceAttitude multiplyByInverseOfAttitude:self.defaultAttitude];
+    }
+    
+    //
+    // Send the motion input to the Spacecraft object
+    //
+    if ( ( self.deviceAttitude.pitch ) < M_PI / 3.0  && ( self.deviceAttitude.pitch ) > -M_PI / 3.0 )
+    {
+        self.spacecraft.pitch = [NSNumber numberWithDouble:self.deviceAttitude.pitch];
+    }
+    
+    if ( ( self.deviceAttitude.roll ) < M_PI / 3.0  && ( self.deviceAttitude.roll ) > -M_PI / 3.0 )
+    {
+        self.spacecraft.roll = [NSNumber numberWithDouble:self.deviceAttitude.roll];
+    }
+    
+    if ( ( self.deviceAttitude.yaw ) < M_PI / 3.0  && ( self.deviceAttitude.yaw ) > -M_PI / 3.0 )
+    {
+        self.spacecraft.yaw = [NSNumber numberWithDouble:self.deviceAttitude.yaw];
     }
 }
 
@@ -330,40 +363,6 @@ NSString *Show_HoverView = @"SHOW";
 
 
 
-
-- (void)craftAttitude
-{
-    //
-    // Calibrate for defaultAttitude
-    //
-    self.deviceAttitude = self.motionManager.deviceMotion.attitude;
-    
-    if (self.defaultAttitude != nil) 
-    {
-        [self.deviceAttitude multiplyByInverseOfAttitude:self.defaultAttitude];
-    }
-    
-    //
-    // Send the motion input to the Spacecraft object
-    //
-    if ( ( self.deviceAttitude.pitch ) < M_PI / 3.0  && ( self.deviceAttitude.pitch ) > -M_PI / 3.0 )
-    {
-        self.spacecraft.pitch = [NSNumber numberWithFloat:self.deviceAttitude.pitch];
-    }
-    
-    if ( ( self.deviceAttitude.roll ) < M_PI / 3.0  && ( self.deviceAttitude.roll ) > -M_PI / 3.0 )
-    {
-        self.spacecraft.roll = [NSNumber numberWithFloat:self.deviceAttitude.roll];
-    }
-    
-    if ( ( self.deviceAttitude.yaw ) < M_PI / 3.0  && ( self.deviceAttitude.yaw ) > -M_PI / 3.0 )
-    {
-        self.spacecraft.yaw = [NSNumber numberWithFloat:self.deviceAttitude.yaw];
-    }
-}
-
-
-
 - (void)diplayCraftAttitudeData
 {
     //
@@ -376,40 +375,38 @@ NSString *Show_HoverView = @"SHOW";
     //
     NSNumber *origPitchNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.pitch * 180.0 / M_PI];
     NSNumber *pitchNumber = [NSNumber numberWithDouble:self.deviceAttitude.pitch * 180.0 / M_PI];
-    NSString *pitchString = [NSString stringWithFormat:@"%2.0f", [pitchNumber doubleValue]];
+    NSString *pitchString = [NSString stringWithFormat:@"%2.0f", [pitchNumber floatValue]];
     pitchString = [pitchString stringByAppendingString:@"°"];
     self.pitchTextField.text = pitchString;
     
-    pitchString = [NSString stringWithFormat:@"%2.0f", [origPitchNumber doubleValue]];
+    pitchString = [NSString stringWithFormat:@"%2.0f", [origPitchNumber floatValue]];
     pitchString = [pitchString stringByAppendingFormat:@"°"];
     self.origPitchTextField.text = pitchString;
     
     
     NSNumber *origRollNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.roll * 180.0 / M_PI];
     NSNumber *rollNumber = [NSNumber numberWithDouble:self.deviceAttitude.roll * 180.0 / M_PI];
-    NSString *rollString = [NSString stringWithFormat:@"%2.0f", [rollNumber doubleValue]];
+    NSString *rollString = [NSString stringWithFormat:@"%2.0f", [rollNumber floatValue]];
     rollString = [rollString stringByAppendingString:@"°"];
     self.rollTextField.text = rollString;
     
-    rollString = [NSString stringWithFormat:@"%2.0f", [origRollNumber doubleValue]];
+    rollString = [NSString stringWithFormat:@"%2.0f", [origRollNumber floatValue]];
     rollString = [rollString stringByAppendingString:@"°"];
     self.origRollTextField.text = rollString;
     
     
     NSNumber *origYawNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.yaw * 180.0 / M_PI];
     NSNumber *yawNumber = [NSNumber numberWithDouble:self.deviceAttitude.yaw * 180.0 / M_PI];
-    NSString *yawString = [NSString stringWithFormat:@"%2.0f", [yawNumber doubleValue]];
+    NSString *yawString = [NSString stringWithFormat:@"%2.0f", [yawNumber floatValue]];
     yawString = [yawString stringByAppendingString:@"°"];
     self.yawTextField.text = yawString;
     
-    yawString = [NSString stringWithFormat:@"%2.0f", [origYawNumber doubleValue]];
+    yawString = [NSString stringWithFormat:@"%2.0f", [origYawNumber floatValue]];
     yawString = [yawString stringByAppendingString:@"°"];
     self.origYawTextField.text = yawString;
 }
 
 
-
-#define MOTION_SCALE  4.0;
 
 - (void)craftTranslation
 {
@@ -419,10 +416,13 @@ NSString *Show_HoverView = @"SHOW";
     CGRect mainViewFrame = self.view.frame;
     CGRect craftViewFrame = self.craftView.frame;
     
+    [self.spacecraft lateralTranslationFromRoll:self.spacecraft.roll];
+    [self.spacecraft longitudinalTranslationFromThrust:self.spacecraft.pitch];
+    
     //
     // X-Translation
     //
-    craftViewFrame.origin.x += [self.spacecraft.roll floatValue] * MOTION_SCALE;
+    craftViewFrame.origin.x += [self.spacecraft.lateralTranslation floatValue];
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.x = self.craftView.frame.origin.x;
@@ -431,7 +431,7 @@ NSString *Show_HoverView = @"SHOW";
     //
     // Y-Translation
     //
-    craftViewFrame.origin.y += [self.spacecraft.pitch floatValue] * MOTION_SCALE;
+    craftViewFrame.origin.y += [self.spacecraft.longitudinalTranslation floatValue];
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.y = self.craftView.frame.origin.y;
@@ -482,6 +482,24 @@ NSString *Show_HoverView = @"SHOW";
 }
 
 
+
+#pragma mark -
+#pragma mark Error Handling Methods
+
+- (void) gyroNotSupported
+{
+    UIAlertView *alertView  = [[UIAlertView alloc] initWithTitle:@"Gyro Not Supported On This Device"
+                                                         message:@"Gyro is not supported on your device. This prevents your device from using Core Motion Manager."
+                                                        delegate:nil
+                                               cancelButtonTitle:@"Okay"
+                                               otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];        
+}
+
+
+
+#pragma mark - Action Methods
 
 - (IBAction)showHUD
 {
