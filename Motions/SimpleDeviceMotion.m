@@ -20,8 +20,8 @@
 
 
 
-CGFloat DegreesToRadians(CGFloat degrees) { return degrees * M_PI / 180.0; };
-CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
+CGFloat nDegreesToRadians(CGFloat degrees) { return degrees * M_PI / 180.0; };
+CGFloat nRadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
 
 
 
@@ -317,6 +317,7 @@ NSString *Show_HoverView = @"SHOW";
     //
     // Send the motion input to the Spacecraft object
     //
+/*
     if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.pitch ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.pitch ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
     {
         [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:self.deviceAttitude.pitch]];
@@ -325,8 +326,9 @@ NSString *Show_HoverView = @"SHOW";
     {
         [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.pitch ) ? M_PI / 3.0 : -M_PI / 3.0]];
     }
-    
-
+*/   
+    [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:self.deviceAttitude.pitch]];
+/*
     if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.roll ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.roll ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
     {
         [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:self.deviceAttitude.roll]];
@@ -335,9 +337,10 @@ NSString *Show_HoverView = @"SHOW";
     {
          [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.roll ) ? M_PI / 3.0 : -M_PI / 3.0]];
     }
+*/
+    [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:self.deviceAttitude.roll]];
     
-    
-    if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.yaw ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.yaw ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
+/*  if ( ( NSInteger )nRadiansToDegrees( self.deviceAttitude.yaw ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )nRadiansToDegrees( self.deviceAttitude.yaw ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
     {
         [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:self.deviceAttitude.yaw]];
     }
@@ -345,6 +348,8 @@ NSString *Show_HoverView = @"SHOW";
     {
         [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.yaw ) ? M_PI / 3.0 : -M_PI / 3.0]];
     }
+*/
+     [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:self.deviceAttitude.yaw]];
 }
 
 

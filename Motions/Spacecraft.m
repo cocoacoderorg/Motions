@@ -14,6 +14,17 @@
 #import <UIKit/UIKit.h>
 
 
+#define kMaxPitchAngle  65.0
+#define kMaxRollAngle   65.0
+#define kMaxYawAngle    65.0
+
+
+
+
+CGFloat DegreesToRadians(CGFloat degrees) { return degrees * M_PI / 180.0; };
+CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
+
+
 
 @interface Spacecraft() 
 
@@ -112,25 +123,58 @@
 //
 
 - (void)setPitchFromInput:(NSNumber *)pitchInput
-{
-    pitch = [NSNumber numberWithDouble:[pitchInput doubleValue]];
-    self.pitchTranslation = [NSNumber numberWithDouble:[pitchInput doubleValue] * [self.pitchSensitivity doubleValue]];
+{    
+    if ( ( NSInteger )RadiansToDegrees( [pitchInput floatValue] ) < ( NSInteger )( kMaxRollAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( [pitchInput floatValue] ) > ( NSInteger )( -kMaxPitchAngle + 5.0 ) )
+    {
+        pitch = [NSNumber numberWithDouble:[pitchInput doubleValue]];
+        self.pitchTranslation = [NSNumber numberWithDouble:[pitchInput doubleValue] * [self.pitchSensitivity doubleValue]];
+    }
+    else
+    {
+        pitch = [NSNumber numberWithDouble:( M_PI / 3.0 < [pitchInput floatValue] ) ? M_PI / 3.0 : -M_PI / 3.0];
+        self.pitchTranslation = [NSNumber numberWithDouble:[pitchInput doubleValue] * [self.pitchSensitivity doubleValue]];
+    }
+
+    //pitch = [NSNumber numberWithDouble:[pitchInput doubleValue]];
+    //self.pitchTranslation = [NSNumber numberWithDouble:[pitchInput doubleValue] * [self.pitchSensitivity doubleValue]];
 }
 
 
 
 - (void)setRollFromInput:(NSNumber *)rollInput
 {
-    roll = [NSNumber numberWithDouble:[rollInput doubleValue]];
-    self.rollTranslation = [NSNumber numberWithDouble:[rollInput doubleValue] * [self.rollSensitivity doubleValue]];
+    if ( ( NSInteger )RadiansToDegrees( [rollInput floatValue] ) < ( NSInteger )( kMaxRollAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( [rollInput floatValue] ) > ( NSInteger )( -kMaxRollAngle + 5.0 ) )
+    {
+        roll = [NSNumber numberWithDouble:[rollInput doubleValue]];
+        self.rollTranslation = [NSNumber numberWithDouble:[rollInput doubleValue] * [self.rollSensitivity doubleValue]];
+    }
+    else
+    {
+        roll = [NSNumber numberWithDouble:( M_PI / 3.0 < [rollInput floatValue] ) ? M_PI / 3.0 : -M_PI / 3.0];
+        self.rollTranslation = [NSNumber numberWithDouble:[rollInput doubleValue] * [self.rollSensitivity doubleValue]];
+    }
+
+    //roll = [NSNumber numberWithDouble:[rollInput doubleValue]];
+    //self.rollTranslation = [NSNumber numberWithDouble:[rollInput doubleValue] * [self.rollSensitivity doubleValue]];
 }
 
 
 
 - (void)setYawFromInput:(NSNumber *)yawInput
 {
-    yaw = [NSNumber numberWithDouble:[yawInput doubleValue]];
-    self.yawTranslation = [NSNumber numberWithDouble:sin([yawInput doubleValue])];
+    if ( ( NSInteger )RadiansToDegrees( [yawInput floatValue] ) < ( NSInteger )( kMaxYawAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( [yawInput floatValue] ) > ( NSInteger )( -kMaxYawAngle + 5.0 ) )
+    {
+        yaw = [NSNumber numberWithDouble:[yawInput doubleValue]];
+        self.yawTranslation = [NSNumber numberWithDouble:[yawInput doubleValue] * [self.yawSensitivity doubleValue]];
+    }
+    else
+    {
+        yaw = [NSNumber numberWithDouble:( M_PI / 3.0 < [yawInput floatValue] ) ? M_PI / 3.0 : -M_PI / 3.0];
+        self.yawTranslation = [NSNumber numberWithDouble:[yawInput doubleValue] * [self.yawSensitivity doubleValue]];
+    }
+
+    //yaw = [NSNumber numberWithDouble:[yawInput doubleValue]];
+    //self.yawTranslation = [NSNumber numberWithDouble:sin([yawInput doubleValue])];
 }
 
 
