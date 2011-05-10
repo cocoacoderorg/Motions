@@ -397,12 +397,12 @@
     //
     if (self.userAccel) 
     {
-        [self.spacecraft lateralTranslationFromRoll:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x]];
+        [self.spacecraft lateralTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x]];
         [self.spacecraft longitudinalTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.y]];
     }
     else
     {
-        [self.spacecraft lateralTranslationFromRoll:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x]];
+        [self.spacecraft lateralTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x]];
         [self.spacecraft longitudinalTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.y]];
     }
     
@@ -411,7 +411,7 @@
     //
     // X-Translation
     //
-    craftViewFrame.origin.x += [self.spacecraft.lateralTranslation floatValue] * accelMultiplier;
+    craftViewFrame.origin.x += [self.spacecraft.rollTranslation floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.x = self.craftView.frame.origin.x;
@@ -420,7 +420,7 @@
     //
     // Y-Translation
     //
-    craftViewFrame.origin.y -= [self.spacecraft.longitudinalTranslation floatValue] * accelMultiplier;
+    craftViewFrame.origin.y -= [self.spacecraft.pitchTranslation floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.y = self.craftView.frame.origin.y;

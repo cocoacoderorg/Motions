@@ -23,8 +23,13 @@
     NSNumber            *roll;
     NSNumber            *yaw;
     
-    NSNumber            *lateralTranslation;
-    NSNumber            *longitudinalTranslation;
+    NSNumber            *pitchTranslation;
+    NSNumber            *rollTranslation;
+    NSNumber            *yawTranslation;
+    
+    NSNumber            *pitchSensitivity;
+    NSNumber            *rollSensitivity;
+    NSNumber            *yawSensitivity;
 }
 
 @property (nonatomic, retain)       UIImage             *spacecraftImage;
@@ -33,17 +38,17 @@
 @property (nonatomic, retain)       NSNumber            *y;
 @property (nonatomic, retain)       NSNumber            *z;
 
-@property (nonatomic, retain)       NSNumber            *pitch;
-@property (nonatomic, retain)       NSNumber            *roll;
-@property (nonatomic, retain)       NSNumber            *yaw;
+@property (nonatomic, retain, setter = setRollFromInput:)        NSNumber            *roll;
+@property (nonatomic, retain, setter = setPitchFromInput:)       NSNumber            *pitch;
+@property (nonatomic, retain, setter = setYawFromInput:)         NSNumber            *yaw;
 
-@property (nonatomic, retain)       NSNumber            *lateralTranslation;
-@property (nonatomic, retain)       NSNumber            *longitudinalTranslation;
+@property (nonatomic, retain)       NSNumber            *pitchTranslation;
+@property (nonatomic, retain)       NSNumber            *rollTranslation;
+@property (nonatomic, retain)       NSNumber            *yawTranslation;
 
-
-
-- (void)lateralTranslationFromRoll:(NSNumber *)rollAngle;
-- (void)longitudinalTranslationFromThrust:(NSNumber *)thrust;
+@property (nonatomic, retain)       NSNumber            *pitchSensitivity;
+@property (nonatomic, retain)       NSNumber            *rollSensitivity;
+@property (nonatomic, retain)       NSNumber            *yawSensitivity;
 
 
 

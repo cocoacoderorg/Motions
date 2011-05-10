@@ -16,6 +16,15 @@
 
 
 
+#define kMaxAngle 65.0
+
+
+
+CGFloat DegreesToRadians(CGFloat degrees) { return degrees * M_PI / 180.0; };
+CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
+
+
+
 @interface SimpleDeviceMotion() 
 
 @property (nonatomic, assign) CADisplayLink *displayLink;
@@ -138,7 +147,7 @@ NSString *Show_HoverView = @"SHOW";
     // Do any additional setup after loading the view from its nib.
     self.spacecraft = [[Spacecraft alloc] init];
 
-    self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0; // 50 Hz
+    self.motionManager.deviceMotionUpdateInterval = 1.0 / 80.0; // 60 Hz
 
     animating = FALSE;
     animationFrameInterval = 1;
@@ -146,12 +155,7 @@ NSString *Show_HoverView = @"SHOW";
     
     self.craftImageView.image = self.spacecraft.spacecraftImage;
     
-//    translationX = 0;
-//    translationY = 0;
-    
     self.hudView.hudVisible = NO;
-    
-    NSLog(@"main view frame = (%f, %f, %f, %f)\n\n", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 
@@ -309,23 +313,70 @@ NSString *Show_HoverView = @"SHOW";
         [self.deviceAttitude multiplyByInverseOfAttitude:self.defaultAttitude];
     }
     
+        
     //
     // Send the motion input to the Spacecraft object
     //
-    if ( ( self.deviceAttitude.pitch ) < M_PI / 3.0  && ( self.deviceAttitude.pitch ) > -M_PI / 3.0 )
+    if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.pitch ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.pitch ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
     {
-        self.spacecraft.pitch = [NSNumber numberWithDouble:self.deviceAttitude.pitch];
+        [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:self.deviceAttitude.pitch]];
+    }
+    else
+    {
+        [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.pitch ) ? M_PI / 3.0 : -M_PI / 3.0]];
     }
     
-    if ( ( self.deviceAttitude.roll ) < M_PI / 3.0  && ( self.deviceAttitude.roll ) > -M_PI / 3.0 )
+
+    if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.roll ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.roll ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
     {
-        self.spacecraft.roll = [NSNumber numberWithDouble:self.deviceAttitude.roll];
+        [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:self.deviceAttitude.roll]];
+    }
+    else
+    {
+         [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.roll ) ? M_PI / 3.0 : -M_PI / 3.0]];
     }
     
-    if ( ( self.deviceAttitude.yaw ) < M_PI / 3.0  && ( self.deviceAttitude.yaw ) > -M_PI / 3.0 )
+    
+    if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.yaw ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.yaw ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
     {
-        self.spacecraft.yaw = [NSNumber numberWithDouble:self.deviceAttitude.yaw];
+        [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:self.deviceAttitude.yaw]];
     }
+    else
+    {
+        [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.yaw ) ? M_PI / 3.0 : -M_PI / 3.0]];
+    }
+}
+
+
+
+- (void)craftTranslation
+{
+    CGRect mainViewFrame = self.view.frame;
+    CGRect craftViewFrame = self.craftView.frame;
+    
+    
+    //
+    // X-Translation
+    //
+    craftViewFrame.origin.x += [self.spacecraft.rollTranslation floatValue];
+    if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
+    {
+        craftViewFrame.origin.x = self.craftView.frame.origin.x;
+    }
+    
+    //
+    // Y-Translation
+    //
+    craftViewFrame.origin.y += [self.spacecraft.pitchTranslation floatValue];
+    if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
+    {
+        craftViewFrame.origin.y = self.craftView.frame.origin.y;
+    }    
+    
+    self.craftView.frame = craftViewFrame;
+    self.spacecraft.x = [NSNumber numberWithFloat:self.craftView.center.x];
+    self.spacecraft.y = [NSNumber numberWithFloat:self.craftView.center.y];
+    self.spacecraft.z = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
 }
 
 
@@ -333,12 +384,12 @@ NSString *Show_HoverView = @"SHOW";
 - (void)transformCraftAttitudeInView
 {
     CATransform3D transformedView = CATransform3DIdentity;
-//    transformedView.m34 = -1.0 / ( 100.0 * self.perspective );
     transformedView.m34 = 1.0 / ( 100.0 * 1.0 );
-    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
-    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], 1.0, 0.0, 0.0);
-    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
-    transformedView = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
+    transformedView     = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], 1.0, 0.0, 0.0);
+    transformedView     = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
+    transformedView     = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
+    transformedView     = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
+    
     self.craftView.layer.sublayerTransform = transformedView;
     self.craftView.layer.zPosition = 100.0;
    
@@ -373,7 +424,7 @@ NSString *Show_HoverView = @"SHOW";
     //
     // Display the updated data, the original data, and the bias data
     //
-    NSNumber *origPitchNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.pitch * 180.0 / M_PI];
+    NSNumber *origPitchNumber = [NSNumber numberWithDouble:[self.spacecraft.pitch doubleValue] * 180.0 / M_PI];
     NSNumber *pitchNumber = [NSNumber numberWithDouble:self.deviceAttitude.pitch * 180.0 / M_PI];
     NSString *pitchString = [NSString stringWithFormat:@"%2.0f", [pitchNumber floatValue]];
     pitchString = [pitchString stringByAppendingString:@"°"];
@@ -384,7 +435,7 @@ NSString *Show_HoverView = @"SHOW";
     self.origPitchTextField.text = pitchString;
     
     
-    NSNumber *origRollNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.roll * 180.0 / M_PI];
+    NSNumber *origRollNumber = [NSNumber numberWithDouble:[self.spacecraft.roll doubleValue] * 180.0 / M_PI];
     NSNumber *rollNumber = [NSNumber numberWithDouble:self.deviceAttitude.roll * 180.0 / M_PI];
     NSString *rollString = [NSString stringWithFormat:@"%2.0f", [rollNumber floatValue]];
     rollString = [rollString stringByAppendingString:@"°"];
@@ -395,7 +446,7 @@ NSString *Show_HoverView = @"SHOW";
     self.origRollTextField.text = rollString;
     
     
-    NSNumber *origYawNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.yaw * 180.0 / M_PI];
+    NSNumber *origYawNumber = [NSNumber numberWithDouble:[self.spacecraft.yaw doubleValue] * 180.0 / M_PI];
     NSNumber *yawNumber = [NSNumber numberWithDouble:self.deviceAttitude.yaw * 180.0 / M_PI];
     NSString *yawString = [NSString stringWithFormat:@"%2.0f", [yawNumber floatValue]];
     yawString = [yawString stringByAppendingString:@"°"];
@@ -408,52 +459,15 @@ NSString *Show_HoverView = @"SHOW";
 
 
 
-- (void)craftTranslation
-{
-//    translationX += ( NSInteger ) self.spacecraft.roll * MOTION_SCALE;
-//    translationY += ( NSInteger ) self.spacecraft.pitch * MOTION_SCALE;
-    
-    CGRect mainViewFrame = self.view.frame;
-    CGRect craftViewFrame = self.craftView.frame;
-    
-    [self.spacecraft lateralTranslationFromRoll:self.spacecraft.roll];
-    [self.spacecraft longitudinalTranslationFromThrust:self.spacecraft.pitch];
-    
-    //
-    // X-Translation
-    //
-    craftViewFrame.origin.x += [self.spacecraft.lateralTranslation floatValue];
-    if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
-    {
-        craftViewFrame.origin.x = self.craftView.frame.origin.x;
-    }
-    
-    //
-    // Y-Translation
-    //
-    craftViewFrame.origin.y += [self.spacecraft.longitudinalTranslation floatValue];
-    if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
-    {
-        craftViewFrame.origin.y = self.craftView.frame.origin.y;
-    }    
-    
-    self.craftView.frame = craftViewFrame;
-    self.spacecraft.x = [NSNumber numberWithFloat:self.craftView.center.x];
-    self.spacecraft.y = [NSNumber numberWithFloat:self.craftView.center.y];
-    self.spacecraft.z = [NSNumber numberWithFloat:self.craftView.layer.zPosition];
-}
-
-
-
 - (void)drawView
 {
     [self craftAttitude];
             
     [self transformCraftAttitudeInView];   
     
-    [self diplayCraftAttitudeData];
-    
     [self craftTranslation];
+    
+    [self diplayCraftAttitudeData];
 }
 
 
