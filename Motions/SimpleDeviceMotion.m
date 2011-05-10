@@ -16,15 +16,6 @@
 
 
 
-#define kMaxAngle 65.0
-
-
-
-CGFloat nDegreesToRadians(CGFloat degrees) { return degrees * M_PI / 180.0; };
-CGFloat nRadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
-
-
-
 @interface SimpleDeviceMotion() 
 
 @property (nonatomic, assign) CADisplayLink *displayLink;
@@ -45,13 +36,14 @@ NSString *Show_HoverView = @"SHOW";
 
 
 
+@synthesize motionManager;
 @synthesize deviceAttitude;
-@synthesize defaultAttitude;
 @synthesize deviceAcceleration;
+@synthesize defaultAttitude;
 
-@synthesize displayLink;
 @synthesize animating;
 @synthesize animationFrameInterval;
+@synthesize displayLink;
 
 @synthesize craftView;
 @synthesize craftImageView;
@@ -91,6 +83,9 @@ NSString *Show_HoverView = @"SHOW";
     [origPitchTextField release];
     [origRollTextField release];
     [origYawTextField release];
+    
+    [hudView release];
+    [settingsButton release];
     
     [spacecraft release];
     
@@ -147,7 +142,7 @@ NSString *Show_HoverView = @"SHOW";
     // Do any additional setup after loading the view from its nib.
     self.spacecraft = [[Spacecraft alloc] init];
 
-    self.motionManager.deviceMotionUpdateInterval = 1.0 / 80.0; // 60 Hz
+    self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0; // 60 Hz
 
     animating = FALSE;
     animationFrameInterval = 1;
@@ -304,7 +299,7 @@ NSString *Show_HoverView = @"SHOW";
 - (void)craftAttitude
 {
     //
-    // Calibrate for defaultAttitude
+    // Calibrate for defaultAttitude if possible
     //
     self.deviceAttitude = self.motionManager.deviceMotion.attitude;
     
@@ -315,41 +310,24 @@ NSString *Show_HoverView = @"SHOW";
     
         
     //
-    // Send the motion input to the Spacecraft object
+    // Send the pitch, roll and yaw motion inputs to the Spacecraft object. 
     //
-/*
-    if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.pitch ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.pitch ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
-    {
-        [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:self.deviceAttitude.pitch]];
-    }
-    else
-    {
-        [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.pitch ) ? M_PI / 3.0 : -M_PI / 3.0]];
-    }
-*/   
+    // This could have...no, likely should have, been consolodated into one method -setAttitudeFromInput: 
+    // and I may in fact implement that method later on in the Spacecraft class. But right now, I'm more interested in 
+    // showing users of this code how to explicitly bring attitude into a Model class.
+    //
+    // Yes, to you more experienced programmers, this is really silly. But for newbies, I've found that making things
+    // as explicit as possible is the key to understanding.
+    //
+    // At least, it was for me. 
+    //
+    //                  ⊂):-)
+    //
     [self.spacecraft setPitchFromInput:[NSNumber numberWithDouble:self.deviceAttitude.pitch]];
-/*
-    if ( ( NSInteger )RadiansToDegrees( self.deviceAttitude.roll ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( self.deviceAttitude.roll ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
-    {
-        [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:self.deviceAttitude.roll]];
-    }
-    else
-    {
-         [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.roll ) ? M_PI / 3.0 : -M_PI / 3.0]];
-    }
-*/
+
     [self.spacecraft setRollFromInput:[NSNumber numberWithDouble:self.deviceAttitude.roll]];
     
-/*  if ( ( NSInteger )nRadiansToDegrees( self.deviceAttitude.yaw ) < ( NSInteger )( kMaxAngle - 5.0 )  && ( NSInteger )nRadiansToDegrees( self.deviceAttitude.yaw ) > ( NSInteger )( -kMaxAngle + 5.0 ) )
-    {
-        [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:self.deviceAttitude.yaw]];
-    }
-    else
-    {
-        [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:( M_PI / 3.0 < self.deviceAttitude.yaw ) ? M_PI / 3.0 : -M_PI / 3.0]];
-    }
-*/
-     [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:self.deviceAttitude.yaw]];
+    [self.spacecraft setYawFromInput:[NSNumber numberWithDouble:self.deviceAttitude.yaw]];
 }
 
 
@@ -397,24 +375,6 @@ NSString *Show_HoverView = @"SHOW";
     
     self.craftView.layer.sublayerTransform = transformedView;
     self.craftView.layer.zPosition = 100.0;
-   
-    
-//    CGAffineTransform translationTransform          = CGAffineTransformIdentity;
-//    translationTransform                            = CGAffineTransformMakeTranslation(translationX, translationY);
-//    
-//    if ( ( translationTransform.tx > -60 && translationTransform.tx < 60) && ( translationTransform.ty > -100 && translationTransform.ty < 100 ) )
-//    {
-//        self.craftView.transform                    = translationTransform;
-//        
-//        oldTranslationX                             = translationX;
-//        oldTranslationY                             = translationY;
-//    }
-//    else
-//    {
-//        self.craftView.transform                    = CGAffineTransformMakeTranslation(oldTranslationX, oldTranslationY);
-//    }
-//
-//    NSLog(@"craftView.transform (tx, ty) = (%f, %f)", self.craftView.transform.tx, self.craftView.transform.ty);
 }
 
 
@@ -490,9 +450,9 @@ NSString *Show_HoverView = @"SHOW";
     //
     // For centering a view that has been transformed via an Affine Transform.
     //
-//    translationX = 0.0;
-//    translationY = 0.0;
-//    self.craftView.transform = CGAffineTransformMakeTranslation(translationX, translationX);
+    //translationX = 0.0;
+    //translationY = 0.0;
+    //self.craftView.transform = CGAffineTransformMakeTranslation(translationX, translationX);
     
     [UIView animateWithDuration:0.5 animations:^{
         self.hudView.alpha = 0.0;

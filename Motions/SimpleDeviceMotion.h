@@ -54,13 +54,13 @@ extern NSString *Show_HoverView;
 }
 
 // CADisplayLink Properties
-@property (readonly, nonatomic, getter=isAnimating) BOOL                        animating;
-@property (nonatomic)                               NSInteger                   animationFrameInterval;
-
 @property (readonly)                                CMMotionManager             *motionManager;
 @property (nonatomic, retain)                       CMAttitude                  *deviceAttitude;
 @property (nonatomic, retain)                       CMAttitude                  *defaultAttitude;
 @property (nonatomic, readwrite)                    CMAcceleration              *deviceAcceleration;
+
+@property (readonly, nonatomic, getter=isAnimating) BOOL                        animating;
+@property (nonatomic)                               NSInteger                   animationFrameInterval;
 
 @property (nonatomic, retain)       IBOutlet        UIView                      *craftView;
 @property (nonatomic, retain)       IBOutlet        UIImageView                 *craftImageView;
