@@ -30,7 +30,12 @@
     NSNumber            *pitchSensitivity;
     NSNumber            *rollSensitivity;
     NSNumber            *yawSensitivity;
+    
+    NSNumber            *longitudinalTranslation;
+    NSNumber            *lateralTranslation;
+    NSNumber            *verticalTranslation;
 }
+
 
 @property (nonatomic, retain)       UIImage             *spacecraftImage;
 
@@ -50,6 +55,9 @@
 @property (nonatomic, retain)       NSNumber            *rollSensitivity;
 @property (nonatomic, retain)       NSNumber            *yawSensitivity;
 
+@property (nonatomic, retain, setter = setLongitudinalTranslationFromInput:)        NSNumber        *longitudinalTranslation;
+@property (nonatomic, retain, setter = setLateralTranslationFromInput:)             NSNumber        *lateralTranslation;
+@property (nonatomic, retain, setter = setVerticalTranslationFromInput:)            NSNumber        *verticalTranslation;
 
 
 @end

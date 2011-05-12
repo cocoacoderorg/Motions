@@ -19,9 +19,6 @@
 
 @property (nonatomic, assign) CADisplayLink *displayLink;
 
-- (void)transformCraftAttitudeInView;
-- (void)craftAttitude;
-//- (void)craftAcceleration; // not implemented.
 - (void)diplayCraftAttitudeData;
 - (void)craftTranslation;
 
@@ -291,53 +288,6 @@
 
 
 
-- (void)transformCraftAttitudeInView
-{
-    CATransform3D transformedView = CATransform3DIdentity;
-    transformedView.m34 = -1.0 / ( 100.0 * 10.0 );
-    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.roll floatValue], 0.0, -1.0, 0.0);
-    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.pitch floatValue], -1.0, 0.0, 0.0);
-    transformedView = CATransform3DRotate(transformedView, [self.spacecraft.yaw floatValue], 0.0, 0.0, -1.0);
-    transformedView = CATransform3DScale(transformedView, 1.0, 1.0, 1.0);
-    self.craftView.layer.sublayerTransform = transformedView;
-    self.craftView.layer.zPosition = 100.0;
-}
-
-
-
-- (void)craftAttitude
-{
-    //
-    // Calibrate for defaultAttitude
-    //
-    self.deviceAttitude                             = self.motionManager.deviceMotion.attitude;
-    
-    if (self.defaultAttitude != nil) 
-    {
-        [self.deviceAttitude multiplyByInverseOfAttitude:self.defaultAttitude];
-    }
-    
-    //
-    // Send the motion input to the Spacecraft object
-    //
-    if ( ( self.deviceAttitude.pitch ) < M_PI / 3.0  && ( self.deviceAttitude.pitch ) > -M_PI / 3.0 )
-    {
-        self.spacecraft.pitch = [NSNumber numberWithFloat:self.deviceAttitude.pitch]; 
-    }
-    
-    if ( ( self.deviceAttitude.roll ) < M_PI / 3.0  && ( self.deviceAttitude.roll ) > -M_PI / 3.0 )
-    {
-        self.spacecraft.roll = [NSNumber numberWithFloat:self.deviceAttitude.roll];
-    }
-    
-    if ( ( self.deviceAttitude.yaw ) < M_PI / 3.0  && ( self.deviceAttitude.yaw ) > -M_PI / 3.0 )
-    {
-        self.spacecraft.yaw = [NSNumber numberWithFloat:self.deviceAttitude.yaw];
-    }
-}
-
-
-
 - (void)diplayCraftAttitudeData
 {
     //
@@ -397,13 +347,13 @@
     //
     if (self.userAccel) 
     {
-        [self.spacecraft lateralTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x]];
-        [self.spacecraft longitudinalTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.y]];
+        [self.spacecraft setLongitudinalTranslationFromInput:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.y]];
+        [self.spacecraft setLateralTranslationFromInput:[NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x]];
     }
     else
     {
-        [self.spacecraft lateralTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x]];
-        [self.spacecraft longitudinalTranslationFromThrust:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.y]];
+        [self.spacecraft setLongitudinalTranslationFromInput:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.y]];
+        [self.spacecraft setLateralTranslationFromInput:[NSNumber numberWithDouble:self.motionManager.accelerometerData.acceleration.x]];
     }
     
     CGFloat accelMultiplier = ( TRUE == self.userAccel ) ? MOTION_USERACCEL_SCALE : MOTION_ACCEL_SCALE;
@@ -411,7 +361,7 @@
     //
     // X-Translation
     //
-    craftViewFrame.origin.x += [self.spacecraft.rollTranslation floatValue] * accelMultiplier;
+    craftViewFrame.origin.x += [self.spacecraft.lateralTranslation floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.x = self.craftView.frame.origin.x;
@@ -420,7 +370,7 @@
     //
     // Y-Translation
     //
-    craftViewFrame.origin.y -= [self.spacecraft.pitchTranslation floatValue] * accelMultiplier;
+    craftViewFrame.origin.y -= [self.spacecraft.longitudinalTranslation floatValue] * accelMultiplier;
     if ( !CGRectContainsRect(mainViewFrame, craftViewFrame ) )
     {
         craftViewFrame.origin.y = self.craftView.frame.origin.y;
@@ -438,10 +388,6 @@
 
 - (void)drawView
 {
-    [self craftAttitude];
-    
-//    [self transformCraftAttitudeInView];   
-    
     [self diplayCraftAttitudeData];
     
     [self craftTranslation];

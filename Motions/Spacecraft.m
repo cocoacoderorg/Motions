@@ -58,6 +58,9 @@ CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
 @synthesize rollSensitivity;
 @synthesize yawSensitivity;
 
+@synthesize longitudinalTranslation;
+@synthesize lateralTranslation;
+@synthesize verticalTranslation;
 
 
 #pragma mark - init & dealloc methods
@@ -118,10 +121,6 @@ CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
 
 #pragma mark - Translation Methods
 
-//
-// Translation Methods...very much in flux, so be patient and check to see if code has been updated.
-//
-
 - (void)setPitchFromInput:(NSNumber *)pitchInput
 {    
     if ( ( NSInteger )RadiansToDegrees( [pitchInput floatValue] ) < ( NSInteger )( kMaxRollAngle - 5.0 )  && ( NSInteger )RadiansToDegrees( [pitchInput floatValue] ) > ( NSInteger )( -kMaxPitchAngle + 5.0 ) )
@@ -134,9 +133,6 @@ CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
         pitch = [NSNumber numberWithDouble:( M_PI / 3.0 < [pitchInput floatValue] ) ? M_PI / 3.0 : -M_PI / 3.0];
         self.pitchTranslation = [NSNumber numberWithDouble:[pitchInput doubleValue] * [self.pitchSensitivity doubleValue]];
     }
-
-    //pitch = [NSNumber numberWithDouble:[pitchInput doubleValue]];
-    //self.pitchTranslation = [NSNumber numberWithDouble:[pitchInput doubleValue] * [self.pitchSensitivity doubleValue]];
 }
 
 
@@ -153,9 +149,6 @@ CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
         roll = [NSNumber numberWithDouble:( M_PI / 3.0 < [rollInput floatValue] ) ? M_PI / 3.0 : -M_PI / 3.0];
         self.rollTranslation = [NSNumber numberWithDouble:[rollInput doubleValue] * [self.rollSensitivity doubleValue]];
     }
-
-    //roll = [NSNumber numberWithDouble:[rollInput doubleValue]];
-    //self.rollTranslation = [NSNumber numberWithDouble:[rollInput doubleValue] * [self.rollSensitivity doubleValue]];
 }
 
 
@@ -172,14 +165,28 @@ CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
         yaw = [NSNumber numberWithDouble:( M_PI / 3.0 < [yawInput floatValue] ) ? M_PI / 3.0 : -M_PI / 3.0];
         self.yawTranslation = [NSNumber numberWithDouble:[yawInput doubleValue] * [self.yawSensitivity doubleValue]];
     }
-
-    //yaw = [NSNumber numberWithDouble:[yawInput doubleValue]];
-    //self.yawTranslation = [NSNumber numberWithDouble:sin([yawInput doubleValue])];
 }
 
 
 
+- (void)setLongitudinalTranslationFromInput:(NSNumber *)longitudinalInput
+{
+    longitudinalTranslation = [NSNumber numberWithDouble:[longitudinalInput doubleValue]];
+}
 
+
+
+- (void)setLateralTranslationFromInput:(NSNumber *)lateralInput
+{
+    lateralTranslation = [NSNumber numberWithDouble:[lateralInput doubleValue]];
+}
+
+
+
+- (void)setVerticalTranslationFromInput:(NSNumber *)verticalInput
+{
+    verticalTranslation = [NSNumber numberWithDouble:[verticalInput doubleValue]];
+}
 
 
 @end
