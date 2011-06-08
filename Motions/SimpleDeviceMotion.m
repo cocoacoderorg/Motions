@@ -65,32 +65,6 @@ NSString *Show_HoverView = @"SHOW";
 
 #pragma mark - View Controller Methods
 
-- (void)dealloc
-{
-    [motionManager release];
-    [deviceAttitude release];
-    [defaultAttitude release];
-    
-    [displayLink release];
-    
-    [craftView release];
-    [craftImageView release];
-    
-    [pitchTextField release];
-    [rollTextField release];
-    [yawTextField release];
-    
-    [origPitchTextField release];
-    [origRollTextField release];
-    [origYawTextField release];
-    
-    [hudView release];
-    [settingsButton release];
-    
-    [spacecraft release];
-    
-    [super dealloc];
-}
 
 
 
@@ -139,11 +113,15 @@ NSString *Show_HoverView = @"SHOW";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+ 
     self.spacecraft = [[Spacecraft alloc] init];
 
-    self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0; // 60 Hz
-
+    self.motionManager.deviceMotionUpdateInterval = 1.0 / 50.0; // 50 Hz
+    
+    
+    //
+    // Variables for displayLink and animating the screen
+    //
     animating = FALSE;
     animationFrameInterval = 1;
     self.displayLink = nil;
@@ -473,7 +451,6 @@ NSString *Show_HoverView = @"SHOW";
                                                cancelButtonTitle:@"Okay"
                                                otherButtonTitles:nil];
     [alertView show];
-    [alertView release];        
 }
 
 

@@ -36,12 +36,6 @@
 
 
 
-- (void)dealloc
-{
-    [documentationWebView release];
-    
-    [super dealloc];
-}
 
 
 

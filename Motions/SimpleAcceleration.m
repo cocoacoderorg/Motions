@@ -25,6 +25,8 @@
 @end
 
 
+
+
 @implementation SimpleAcceleration
 
 
@@ -42,13 +44,8 @@
 @synthesize craftView;
 @synthesize craftImageView;
 
-@synthesize pitchTextField;
-@synthesize rollTextField;
-@synthesize yawTextField;
-
-@synthesize origPitchTextField;
-@synthesize origRollTextField;
-@synthesize origYawTextField;
+@synthesize xAccelTextField;
+@synthesize yAccelTextField;
 
 @synthesize spacecraft;
 
@@ -57,29 +54,6 @@
 
 #pragma mark - View Controller Methods
 
-- (void)dealloc
-{
-    [motionManager release];
-    [deviceAttitude release];
-    [defaultAttitude release];
-    
-    [displayLink release];
-    
-    [craftView release];
-    [craftImageView release];
-    
-    [pitchTextField release];
-    [rollTextField release];
-    [yawTextField release];
-    
-    [origPitchTextField release];
-    [origRollTextField release];
-    [origYawTextField release];
-    
-    [spacecraft release];
-    
-    [super dealloc];
-}
 
 
 
@@ -131,12 +105,19 @@
     
     self.userAccel = YES;
     
+    
+    //
     // Do any additional setup after loading the view from its nib.
+    //
     self.spacecraft = [[Spacecraft alloc] init];
     
-    self.motionManager.deviceMotionUpdateInterval = 1.0 / 40.0; // 40 Hz
-    self.motionManager.accelerometerUpdateInterval = 1.0 / 40.0;
+    self.motionManager.deviceMotionUpdateInterval = 1.0 / 80.0; // 80 Hz
+    self.motionManager.accelerometerUpdateInterval = 1.0 / 40.0; // 40 Hz
     
+    
+    //
+    // Variables for displayLink and animating the screen
+    //
     animating = FALSE;
     animationFrameInterval = 1;
     self.displayLink = nil;
@@ -181,13 +162,8 @@
     
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.pitchTextField = nil;
-    self.rollTextField = nil;
-    self.yawTextField = nil;
-    
-    self.origPitchTextField = nil;
-    self.origRollTextField = nil;
-    self.origYawTextField = nil;
+    self.xAccelTextField = nil;
+    self.yAccelTextField = nil;
 }
 
 
@@ -298,37 +274,16 @@
     //
     // Display the updated data, the original data, and the bias data
     //
-    NSNumber *origPitchNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.pitch * 180.0 / M_PI];
-    NSNumber *pitchNumber = [NSNumber numberWithDouble:self.deviceAttitude.pitch * 180.0 / M_PI];
-    NSString *pitchString = [NSString stringWithFormat:@"%2.0f", [pitchNumber doubleValue]];
-    pitchString = [pitchString stringByAppendingString:@"°"];
-    self.pitchTextField.text = pitchString;
-    
-    pitchString = [NSString stringWithFormat:@"%2.0f", [origPitchNumber doubleValue]];
-    pitchString = [pitchString stringByAppendingFormat:@"°"];
-    self.origPitchTextField.text = pitchString;
+    NSNumber *xAccel = [NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.x];
+    NSString *xAccelString = [NSString stringWithFormat:@"%2.0f", [xAccel doubleValue]];
+    xAccelString = [xAccelString stringByAppendingString:@"°"];
+    self.xAccelTextField.text = xAccelString;
     
     
-    NSNumber *origRollNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.roll * 180.0 / M_PI];
-    NSNumber *rollNumber = [NSNumber numberWithDouble:self.deviceAttitude.roll * 180.0 / M_PI];
-    NSString *rollString = [NSString stringWithFormat:@"%2.0f", [rollNumber doubleValue]];
-    rollString = [rollString stringByAppendingString:@"°"];
-    self.rollTextField.text = rollString;
-    
-    rollString = [NSString stringWithFormat:@"%2.0f", [origRollNumber doubleValue]];
-    rollString = [rollString stringByAppendingString:@"°"];
-    self.origRollTextField.text = rollString;
-    
-    
-    NSNumber *origYawNumber = [NSNumber numberWithDouble:self.motionManager.deviceMotion.attitude.yaw * 180.0 / M_PI];
-    NSNumber *yawNumber = [NSNumber numberWithDouble:self.deviceAttitude.yaw * 180.0 / M_PI];
-    NSString *yawString = [NSString stringWithFormat:@"%2.0f", [yawNumber doubleValue]];
-    yawString = [yawString stringByAppendingString:@"°"];
-    self.yawTextField.text = yawString;
-    
-    yawString = [NSString stringWithFormat:@"%2.0f", [origYawNumber doubleValue]];
-    yawString = [yawString stringByAppendingString:@"°"];
-    self.origYawTextField.text = yawString;
+    NSNumber *yAccel = [NSNumber numberWithDouble:self.motionManager.deviceMotion.userAcceleration.y];
+    NSString *yAccelString = [NSString stringWithFormat:@"%2.0f", [yAccel doubleValue]];
+    yAccelString = [yAccelString stringByAppendingString:@"°"];
+    self.yAccelTextField.text = yAccelString;
 }
 
 

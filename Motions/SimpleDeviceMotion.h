@@ -33,7 +33,7 @@ extern NSString *Show_HoverView;
     BOOL                            animating;
     NSInteger                       animationFrameInterval;
 
-    CADisplayLink                   *displayLink;
+    CADisplayLink                   *__unsafe_unretained displayLink;
     
     UIView                          *craftView;
     UIImageView                     *craftImageView;

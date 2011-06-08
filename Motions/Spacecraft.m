@@ -65,28 +65,6 @@ CGFloat RadiansToDegrees(CGFloat radians) { return radians * 180.0 / M_PI; };
 
 #pragma mark - init & dealloc methods
 
-- (void)dealloc
-{
-    [spacecraftImage release];
-    
-    [x release];
-    [y release];
-    [z release];
-    
-    [pitch release];
-    [roll release];
-    [yaw release];
-    
-    [pitchTranslation release];
-    [rollTranslation release];
-    [yawTranslation release];
-    
-    [pitchSensitivity release];
-    [rollSensitivity release];
-    [yawSensitivity release];
-    
-    [super dealloc];
-}
 
 
 

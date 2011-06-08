@@ -54,7 +54,7 @@
 		E66EC471134D758C0083D707 /* SR-71-Color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color@2x.png"; sourceTree = "<group>"; };
 		E66EC475134D75C10083D707 /* SR-71-Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SR-71-Color.png"; sourceTree = "<group>"; };
 		E66EC487134D827D0083D707 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E69CF4641360E8E9000C6FD9 /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HudView.h; sourceTree = "<group>"; };
+		E69CF4641360E8E9000C6FD9 /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudView.h; sourceTree = "<group>"; };
 		E69CF4651360E8E9000C6FD9 /* HudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudView.m; sourceTree = "<group>"; };
 		E6B04E911353F9A10043F539 /* Motions_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Motions_Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		E6B04E941353F9B10043F539 /* Motions_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Motions_Icon.png; sourceTree = SOURCE_ROOT; };
@@ -410,11 +410,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Motions/Motions-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Motions/Motions-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,10 +430,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Motions/Motions-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Motions/Motions-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";

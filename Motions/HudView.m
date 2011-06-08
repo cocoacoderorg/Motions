@@ -81,9 +81,5 @@
     [self fillRoundedRect:boxRect inContext:ctxt];
 }
 
-- (void)dealloc
-{
-	[super dealloc];
-}
 
 @end

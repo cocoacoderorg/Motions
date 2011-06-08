@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MotionsAppDelegate.h"
+
 int main(int argc, char *argv[])
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, nil);
-    [pool release];
+    //
+    // Pre-ARC Canned Code
+    //
+    //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    //    int retVal = UIApplicationMain(argc, argv, nil, nil);
+    //    [pool release];
+    //    return retVal;
+    
+    int retVal = 0;
+    @autoreleasepool {
+        retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([MotionsAppDelegate class]));
+    }
     return retVal;
 }

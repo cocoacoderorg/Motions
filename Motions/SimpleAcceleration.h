@@ -27,18 +27,13 @@
     
     BOOL                            animating;
     NSInteger                       animationFrameInterval;
-    CADisplayLink                   *displayLink;
+    CADisplayLink                   *__unsafe_unretained displayLink;
     
     UIView                          *craftView;
     UIImageView                     *craftImageView;
     
-    UITextField                     *pitchTextField;
-    UITextField                     *rollTextField;
-    UITextField                     *yawTextField;
-    
-    UITextField                     *origPitchTextField;
-    UITextField                     *origRollTextField;
-    UITextField                     *origYawTextField;
+    UITextField                     *xAccelTextField;
+    UITextField                     *yAccelTextField;
     
     Spacecraft                      *spacecraft;
 }
@@ -57,13 +52,8 @@
 @property (nonatomic, retain)       IBOutlet        UIView                      *craftView;
 @property (nonatomic, retain)       IBOutlet        UIImageView                 *craftImageView;
 
-@property (nonatomic, retain)       IBOutlet        UITextField                 *pitchTextField;
-@property (nonatomic, retain)       IBOutlet        UITextField                 *rollTextField;
-@property (nonatomic, retain)       IBOutlet        UITextField                 *yawTextField;
-
-@property (nonatomic, retain)       IBOutlet        UITextField                 *origPitchTextField;
-@property (nonatomic, retain)       IBOutlet        UITextField                 *origRollTextField;
-@property (nonatomic, retain)       IBOutlet        UITextField                 *origYawTextField;
+@property (nonatomic, retain)       IBOutlet        UITextField                 *xAccelTextField;
+@property (nonatomic, retain)       IBOutlet        UITextField                 *yAccelTextField;
 
 @property (nonatomic, retain)                       Spacecraft                  *spacecraft;
 

@@ -28,24 +28,6 @@
 
 
 
-#pragma mark - init & dealloc Methods
-
-- (void)dealloc
-{
-    [viewControllers release];
-    
-    [simpleDeviceMotion release];
-    
-    [motionsTableViewCell release];
-    [motionName release];
-    [motionSummary release];
-    
-    [super dealloc];
-}
-
-
-
-
 #pragma mark - View Methods
 
 - (void)viewDidLoad
@@ -76,12 +58,6 @@
     
     self.viewControllers = anArray;
     
-    [screenshotDictionary1 release];
-    [screenshotDictionary2 release];
-    [screenshotDictionary3 release];
-    [screenshotDictionary4 release];
-    [screenshotDictionary5 release];
-    [anArray release];
 }
 
 

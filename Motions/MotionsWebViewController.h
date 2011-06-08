@@ -14,7 +14,7 @@
 
 @interface MotionsWebViewController : UIViewController <UIWebViewDelegate>
 {
-    id <MotionsWebViewControllerDelegate>           delegate;
+    id <MotionsWebViewControllerDelegate>           __unsafe_unretained delegate;
     UIWebView                                       *documentationWebView;
     NSURL                                           *documentationURL;
 }
